@@ -1,0 +1,16 @@
+{
+    "name": "dok-cloud-globals",
+    "version": "1.0.6",
+    "description": "",
+    "main": "lib/index.js",
+    "scripts": {
+        "build": "tsc --declaration",
+        "prepublish": "npm run build",
+        "publish": "npm publish"
+    },
+    "author": "Felipe Alves",
+    "license": "ISC",
+    "dependencies": {
+        "typescript": "^4.9.5"
+    }
+}

@@ -1,0 +1,71 @@
+import {
+    Express,
+    Request as ExpressRequest,
+    Response as ExpressResponse,
+} from "express";
+import { User, codes } from "dok-cloud-globals";
+
+export interface App extends Express {}
+
+export type Code = keyof typeof codes;
+
+export interface File {
+    filename: string;
+    mimetype: string;
+    extension: string;
+    size: number;
+    buffer: Buffer;
+}
+
+export interface Request extends Omit<ExpressRequest, "socket"> {
+    headers: {
+        authorization?: string;
+        origin?: string;
+        "content-type": string;
+    };
+    user?: User;
+    body: {
+        [key: string]: any;
+    };
+    params: {
+        [key: string]: string;
+    };
+    query: {
+        [key: string]: string;
+    };
+}
+
+export type NextFunction = (error?: Error) => void;
+
+export interface ResponseData {
+    status: number;
+    code: string;
+    message: string;
+    [key: string]: any;
+}
+
+export interface Response extends ExpressResponse {
+    sendResponse(data: ResponseData): void;
+}
+
+export type ResponseType =
+    | "arraybuffer"
+    | "blob"
+    | "document"
+    | "json"
+    | "text"
+    | "stream";
+
+export type HTTPRouter = (app: App) => void;
+
+export type RouteController = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => Promise<void>;
+
+export type RouteMiddleware = (
+    req: Request,
+    res: Response,
+    next: NextFunction
+) => Promise<void> | void;

@@ -1,0 +1,18 @@
+{
+    "name": "dok-cloud",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "format": "prettier --write .",
+        "install-globals": "cd globals && npm i && npm run build",
+        "install-mobile": "cd mobile && npm i",
+        "install-server": "cd server && npm i",
+        "install-app": "npm run install-globals && npm run install-mobile && npm run install-server"
+    },
+    "keywords": [],
+    "author": "Felipe Alves",
+    "license": "ISC",
+    "devDependencies": {
+        "prettier": "2.8.8"
+    }
+}
