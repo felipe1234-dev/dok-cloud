@@ -2,7 +2,7 @@ import { generateUid, toDate } from "../functions";
 
 class Folder {
     public uid: string;
-    public folder?: string;
+    public folder: string | "root";
     public name: string;
     public description: string;
     public deleted: boolean;
@@ -14,7 +14,7 @@ class Folder {
         const prefix = "folder-";
         const {
             uid = generateUid(prefix, prefix.length + 25),
-            folder,
+            folder = "root",
             name = "",
             description = "",
             deleted = false,

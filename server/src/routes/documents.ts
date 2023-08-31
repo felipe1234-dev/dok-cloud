@@ -5,6 +5,7 @@ import {
     uploadDocumentController,
     uploadChunkController,
     searchDocumentsController,
+    getDocumentController,
 } from "@controllers/documents";
 
 const documentsRouter: HTTPRouter = (api) => {
@@ -17,6 +18,11 @@ const documentsRouter: HTTPRouter = (api) => {
         "/documents",
         useRouteMiddleware(authenticationMiddleware),
         useRouteController(searchDocumentsController)
+    );
+    api.get(
+        "/documents/:documentUid",
+        useRouteMiddleware(authenticationMiddleware),
+        useRouteController(getDocumentController)
     );
     api.post(
         "/documents/:documentUid/chunks",

@@ -13,6 +13,10 @@
     "author": "Felipe Alves",
     "license": "ISC",
     "devDependencies": {
-        "prettier": "2.8.8"
+        "prettier": "2.8.8",
+        "react-native-dotenv": "^3.4.9"
+    },
+    "dependencies": {
+        "dotenv": "^16.3.1"
     }
 }

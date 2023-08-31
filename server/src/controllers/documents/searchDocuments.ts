@@ -1,21 +1,8 @@
 import { DocumentsDB } from "@databases";
-import { codes, operators, Document, Operator } from "dok-cloud-globals";
+import { codes, Document } from "dok-cloud-globals";
 import { RouteController, Request } from "@typings";
+import { stringToWhere } from "@utils";
 import { ServerError, Unauthenticated } from "@errors";
-
-const stringToWhere = (str: string) => {
-    if (!str) return undefined;
-
-    const operator = operators.find((operator) => str.includes(operator));
-    if (!operator) return undefined;
-
-    const [field, value] = str.split(operator);
-    return [field, operator, value] as [
-        field: keyof Document,
-        operator: Operator,
-        value: Document[keyof Document],
-    ];
-};
 
 const searchDocumentsController: RouteController = async (
     req: Request & {
@@ -30,15 +17,14 @@ const searchDocumentsController: RouteController = async (
 ) => {
     try {
         const { where, or, limit, startAfter } = req.query;
-        const currentDocument = req.user;
-        if (!currentDocument)
-            throw new Unauthenticated("You're not authenticated");
+        const currentUser = req.user;
+        if (!currentUser) throw new Unauthenticated("You're not authenticated");
 
         let query = new DocumentsDB();
 
         if (where) {
             for (const operation of where.split(",")) {
-                const args = stringToWhere(operation);
+                const args = stringToWhere<Document>(operation);
                 if (!args) continue;
 
                 query = query.where(...args);
@@ -47,7 +33,7 @@ const searchDocumentsController: RouteController = async (
 
         if (or) {
             const operations = or.split(",");
-            const firstWhere = stringToWhere(operations[0]);
+            const firstWhere = stringToWhere<Document>(operations[0]);
 
             operations.shift();
 
@@ -55,7 +41,7 @@ const searchDocumentsController: RouteController = async (
                 query = query.or(...firstWhere);
 
                 for (const operation of operations) {
-                    const args = stringToWhere(operation);
+                    const args = stringToWhere<Document>(operation);
                     if (!args) continue;
 
                     query = query.where(...args);

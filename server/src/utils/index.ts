@@ -8,3 +8,4 @@ export { default as useRouteController } from "./useRouteController";
 export { default as emailTemplates } from "./emailTemplates";
 export { default as getFileExtension } from "./getFileExtension";
 export { default as getFileMimetype } from "./getFileMimetype";
+export { default as stringToWhere } from "./stringToWhere";

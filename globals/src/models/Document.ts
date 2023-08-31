@@ -2,7 +2,7 @@ import { generateUid, toDate } from "../functions";
 
 class Document {
     public uid: string;
-    public folder: string;
+    public folder: string | "root";
     public filename: string;
     public extension: string;
     public mimetype: string;
@@ -22,7 +22,7 @@ class Document {
 
         const {
             uid = generateUid(prefix, prefix.length + 25),
-            folder = "",
+            folder = "root",
             filename = "",
             extension = "",
             mimetype = "",
