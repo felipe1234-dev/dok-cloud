@@ -1,6 +1,7 @@
 import React from "react";
 import { Composer } from "./src/components";
 import {
+    I18nProvider,
     ThemeProvider,
     LoaderProvider,
     RouterProvider,
@@ -11,6 +12,7 @@ import Root from "./src/Root";
 
 function App() {
     const providers = [
+        I18nProvider,
         ThemeProvider,
         LoaderProvider,
         RouterProvider,
