@@ -5,6 +5,9 @@ function useStyles() {
         fullWidth: {
             width: "100%",
         },
+        round: {
+            borderRadius: 50
+        }
     });
 }
 

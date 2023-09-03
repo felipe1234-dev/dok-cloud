@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { screenConfigs } from "@constants";
 import { ScreenConfig, ScreenParams } from "@types";
+import { Protected } from "@components";
 
 const indexScreen = screenConfigs.find((screen) => screen.index);
 
@@ -21,15 +22,24 @@ function RouterProvider(props: { children: ReactNode }) {
     );
 
     const { component: Screen } = screenConfig || {};
-    const CurrentScreen = () =>
-        Screen && screenConfig ? (
-            <Screen
-                params={screenParams}
-                route={screenConfig}
-            />
+
+    const Wrapper = (props: { children: ReactNode }) =>
+        screenConfig?.protected ? (
+            <Protected>{props.children}</Protected>
         ) : (
-            <></>
+            <>{props.children}</>
         );
+
+    const CurrentScreen = () => (
+        <Wrapper>
+            {Screen && screenConfig && (
+                <Screen
+                    params={screenParams}
+                    route={screenConfig}
+                />
+            )}
+        </Wrapper>
+    );
 
     const navigate = (name: string, params?: ScreenParams) => {
         setScreenName(name);

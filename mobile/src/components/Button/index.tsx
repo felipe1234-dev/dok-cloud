@@ -1,25 +1,31 @@
-import {
-    Button as NativeButton,
-    ButtonProps as NativeButtonProps,
-} from "react-native";
-import { View, ViewProps } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { mergeStyleSheets } from "@functions";
 import useStyles from "./useStyles";
 
-interface ButtonProps extends NativeButtonProps, ViewProps {
+interface ButtonProps extends TouchableOpacityProps {
+    round?: boolean;
     fullWidth?: boolean;
 }
 
 function Button(props: ButtonProps) {
-    const { fullWidth = false, ...rest } = props;
+    const { 
+        round = false, 
+        fullWidth = false, 
+        children, 
+        ...rest 
+    } = props;
     const styles = useStyles();
 
     return (
-        <View
-            style={mergeStyleSheets(new Map([[styles.fullWidth, fullWidth]]))}
+        <TouchableOpacity
+            style={mergeStyleSheets([
+                [styles.fullWidth, fullWidth],
+                [styles.round, round],
+            ])}
+            {...rest}
         >
-            <NativeButton {...rest} />
-        </View>
+            {children}
+        </TouchableOpacity>
     );
 }
 

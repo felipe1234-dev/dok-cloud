@@ -1,27 +1,32 @@
-import { useTheme } from "@providers";
 import { StyleSheet } from "react-native";
+import { useTheme } from "@providers";
 
 function useStyles() {
     const { palette } = useTheme();
 
     return StyleSheet.create({
-        root: {
+        stats: {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
-            height: "100%",
-            width: "100%",
-            backgroundColor: palette.primary.main,
-            fontFamily: "Mulish-Regular",
+            alignItems: "center",
+            gap: 8,
+            padding: 22,
         },
-        nav: {
+        card: {
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-between",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: 8,
+            padding: 15,
+            backgroundColor: palette.info.main,
+            borderRadius: 20,
             width: "100%",
-            minHeight: 16,
-            padding: 10,
         },
+        number: {
+            
+        }
     });
 }
 

@@ -1,7 +1,7 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2015",
     "lib": [
       "dom",
       "dom.iterable",
@@ -64,8 +64,8 @@
       "@icons": [
         "src/icons"
       ],
-      "@assets": [
-        "src/assets"
+      "@assets/*": [
+        "src/assets/*"
       ],
       "@types": [
         "src/types"

@@ -5,6 +5,10 @@ const pt_BR: TranslationTable = {
     "Please, enter the details below to continue":
         "Por favor, preencha os dados abaixo para continuar",
     "Don't have an account yet?": "Ainda não tem uma conta?",
+    "Manage your files in a simple way":
+        "Gerencie seus arquivos em uma maneira simples",
+    "Storage and secure your files in the cloud infinitely with password and fingerprint":
+        "Armazene e proteja seus arquivos na nuvem com espaço infinito com senhas e digital"
 };
 
 export { pt_BR };

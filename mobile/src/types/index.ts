@@ -5,3 +5,4 @@ export * from "./ScreenParams";
 export * from "./Response";
 export * from "./Filters";
 export * from "./Directory";
+export * from "./TranslationTable";

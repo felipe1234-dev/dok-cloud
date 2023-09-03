@@ -18,7 +18,6 @@ module.exports = function (api) {
             "@styles/*": "./src/styles/*",
             "@constants": "./src/constants",
             "@hooks": "./src/hooks",
-            "@images": "./src/images",
             "@icons": "./src/icons",
             "@assets": "./src/assets",
             "@types": "./src/types"
