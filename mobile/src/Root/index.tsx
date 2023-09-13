@@ -1,19 +1,33 @@
+import { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native";
 import { useFonts } from "expo-font";
-import { useRouter } from "@providers";
+
+import { ScreenLoader } from "@components";
+import { useRouter, useTheme } from "@providers";
 import { fonts } from "@constants";
+
 import useStyles from "./useStyles";
 
 function Root() {
-    const { CurrentScreen } = useRouter();
+    const [showLoader, setShowLoader] = useState(false);
+    const { screenConfig, CurrentScreen } = useRouter();
+    const { palette } = useTheme();
     const [loaded] = useFonts(fonts);
     const styles = useStyles();
 
-    if (!loaded) return <></>;
+    useEffect(() => {
+        setShowLoader(true);
+        setTimeout(() => setShowLoader(false), 3000);
+    }, [screenConfig]);
 
     return (
         <SafeAreaView style={styles.root}>
             <CurrentScreen />
+            <ScreenLoader 
+                animating={showLoader || !loaded}
+                color={palette.highlight.main}
+                size="large"
+            />
         </SafeAreaView>
     );
 }

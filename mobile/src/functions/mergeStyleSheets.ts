@@ -1,14 +1,22 @@
 import { StyleSheet, ViewStyle, TextStyle, ImageStyle } from "react-native";
 
-type Styles = ViewStyle | TextStyle | ImageStyle;
+type Styles = ViewStyle | TextStyle | ImageStyle | null | undefined;
 
-function mergeStyleSheets(stylesheets: [style: Styles, condition: boolean][]) {
+function mergeStyleSheets(
+    stylesheets: Array<[style: Styles, condition: boolean] | Styles>
+) {
     let result: Styles = {};
 
-    for (const [stylesheet, condition] of stylesheets) {
-        if (!condition) continue;
+    for (const item of stylesheets) {
+        if (!Array.isArray(item)) {
+            const stylesheet = item;
+            result = { ...result, ...stylesheet };
+        } else {
+            const [stylesheet, condition] = item;
+            if (!stylesheet || !condition) continue;
 
-        result = { ...result, ...stylesheet };
+            result = { ...result, ...stylesheet };
+        }
     }
 
     return result;
