@@ -2,8 +2,8 @@ import { Palette } from "@types";
 
 const lightPalette: Palette = {
     primary: {
-        light: "#5383DD",
-        main: "#617ae4",
+        light: "#9a76fe",
+        main: "#7d4ffc",
         dark: "#2957AD",
     },
     secondary: {
@@ -13,7 +13,7 @@ const lightPalette: Palette = {
     },
     highlight: {
         light: "#8754ed",
-        main: "#8754ed",
+        main: "#fc7eff",
         dark: "#8754ed",
     },
     success: {

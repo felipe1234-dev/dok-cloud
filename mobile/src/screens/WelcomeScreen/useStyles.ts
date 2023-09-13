@@ -11,7 +11,7 @@ function useStyles() {
                 flexDirection: "column",
                 justifyContent: "center",
                 alignItems: "center",
-                gap: 8,
+                gap: 10,
                 backgroundColor: palette.primary.main,
                 height: "100%",
                 width: "100%",
@@ -28,7 +28,7 @@ function useStyles() {
             },
             image: {
                 width: 180,
-                height: 240,
+                height: 284,
             },
         }),
         body: StyleSheet.create({
@@ -66,6 +66,13 @@ function useStyles() {
                 backgroundColor: "transparent",
                 height: "auto",
                 width: "100%",
+            },
+            button: {
+                elevation: 10,
+                backgroundColor: palette.highlight.main,
+            },
+            icon: {
+                color: palette.secondary.light,
             },
         }),
     };
