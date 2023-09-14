@@ -1,13 +1,7 @@
-import { WelcomeScreen, LoginScreen, HomeScreen } from "@screens";
+import { LoginScreen, HomeScreen } from "@screens";
 import { ScreenConfig } from "@types";
 
 const screenConfigs: ScreenConfig[] = [
-    {
-        index: false,
-        name: "Welcome",
-        component: WelcomeScreen,
-        protected: false,
-    },
     {
         index: false,
         name: "Login",
