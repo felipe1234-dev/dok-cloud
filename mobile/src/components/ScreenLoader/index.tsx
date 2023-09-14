@@ -10,8 +10,6 @@ function ScreenLoader(props: ScreenLoaderProps) {
     const { animating = false } = props;
     const styles = useStyles();
 
-    console.log("animating", animating);
-
     return (
         <View style={mergeStyleSheets([
             styles.container,

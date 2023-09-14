@@ -14,7 +14,7 @@ function useStyles() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: palette.secondary.main,
+            backgroundColor: palette.secondary.light,
         },
         hidden: {
             display: "none"
