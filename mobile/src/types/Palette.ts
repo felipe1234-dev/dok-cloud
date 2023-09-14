@@ -8,6 +8,7 @@ interface Palette {
     primary: ColorTones;
     secondary: ColorTones;
     highlight: ColorTones;
+    text: ColorTones;
     error: ColorTones;
     warning: ColorTones;
     info: ColorTones;

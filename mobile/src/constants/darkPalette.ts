@@ -11,6 +11,11 @@ const darkPalette: Palette = {
         main: "#ddd",
         dark: "#aaa",
     },
+    text: {
+        light: "#fff",
+        main: "#ddd",
+        dark: "#aaa",
+    },
     highlight: {
         light: "#8754ed",
         main: "#8754ed",

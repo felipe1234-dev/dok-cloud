@@ -25,7 +25,7 @@ function Root() {
             <CurrentScreen />
             <ScreenLoader 
                 animating={showLoader || !loaded}
-                color={palette.highlight.main}
+                color={palette.primary.main}
                 size="large"
             />
         </SafeAreaView>

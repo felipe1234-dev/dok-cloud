@@ -2,19 +2,24 @@ import { Palette } from "@types";
 
 const lightPalette: Palette = {
     primary: {
-        light: "#9a76fe",
-        main: "#7d4ffc",
-        dark: "#2957AD",
+        light: "#42a5f5",
+        main: "#1976d2",
+        dark: "#1565c0",
     },
     secondary: {
         light: "#fff",
-        main: "#ddd",
-        dark: "#222831",
+        main: "#f3f3f3",
+        dark: "#dbdbda",
+    },
+    text: {
+        light: "#9c9999",
+        main: "#5f5879",
+        dark: "#333333",
     },
     highlight: {
-        light: "#8754ed",
-        main: "#fc7eff",
-        dark: "#8754ed",
+        light: "#ff9800",
+        main: "#ed6c02",
+        dark: "#e65100",
     },
     success: {
         light: "#56667d",
