@@ -21,6 +21,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
+    "declaration": true,
     "paths": {
       "@env": [
         "../.env"
@@ -33,6 +34,9 @@
       ],
       "@functions": [
         "src/functions"
+      ],
+      "@utils": [
+        "src/utils"
       ],
       "@services": [
         "src/services"
