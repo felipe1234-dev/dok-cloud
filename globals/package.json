@@ -1,6 +1,6 @@
 {
     "name": "dok-cloud-globals",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "description": "",
     "main": "lib/index.js",
     "scripts": {
@@ -11,6 +11,21 @@
     "author": "Felipe Alves",
     "license": "ISC",
     "dependencies": {
-        "typescript": "^4.9.5"
+        "istanbul-lib-coverage": "^3.2.0",
+        "istanbul-lib-report": "^3.0.1",
+        "istanbul-reports": "^3.1.6",
+        "node": "^20.6.0",
+        "npm": "^10.1.0",
+        "typescript": "^4.9.5",
+        "yargs": "^17.7.2",
+        "yargs-parser": "^21.1.1"
+    },
+    "devDependencies": {
+        "@types/istanbul-lib-coverage": "^2.0.4",
+        "@types/istanbul-lib-report": "^3.0.0",
+        "@types/istanbul-reports": "^3.0.1",
+        "@types/node": "^20.6.1",
+        "@types/yargs": "^17.0.24",
+        "@types/yargs-parser": "^21.0.0"
     }
 }
