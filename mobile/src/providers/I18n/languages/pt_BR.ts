@@ -1,7 +1,7 @@
 import { TranslationTable } from "@types";
 
 const pt_BR: TranslationTable = {
-    "Welcome back!": "Bem-vindo(a) de volta!",
+    "Welcome back! 👋": "Bem-vindo(a) de volta! 👋",
     "Please, enter the details below to continue":
         "Por favor, preencha os dados abaixo para continuar",
     "Don't have an account yet?": "Ainda não tem uma conta?",
@@ -15,6 +15,8 @@ const pt_BR: TranslationTable = {
     "Enter your email address": "Digite o seu endereço de email",
     "Enter your password": "Digite a sua senha",
     "New here? Register!": "Novo aqui? Registre-se!",
+    "Invalid email": "Email inválido",
+    "Invalid password": "Senha inválida",
 };
 
 export { pt_BR };

@@ -16,17 +16,21 @@ function useStyles(params: TextInputStyleParams) {
         inputStyle = {},
         focused,
         touching,
+        error,
     } = params;
 
     let borderColor = palette.secondary.main;
 
-    if (focused) {
+    if (error) {
+        borderColor = palette.error.main;
+    } else if (focused) {
         borderColor = palette.primary.main;
     } else if (touching) {
         borderColor = palette.text.dark;
     }
 
-    const labelColor = focused || touching ? borderColor : palette.text.dark;
+    const labelColor =
+        error || focused || touching ? borderColor : palette.text.dark;
     const fontSize = 15;
 
     return StyleSheet.create({
@@ -55,6 +59,10 @@ function useStyles(params: TextInputStyleParams) {
             color: labelColor,
             fontSize,
             ...labelStyle,
+        },
+        error: {
+            color: palette.error.main,
+            fontSize,
         },
         input: {
             backgroundColor: "transparent",

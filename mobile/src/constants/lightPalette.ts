@@ -27,9 +27,9 @@ const lightPalette: Palette = {
         dark: "#000",
     },
     error: {
-        light: "#56667d",
-        main: "#222831",
-        dark: "#000",
+        light: "#ef5350",
+        main: "#d32f2f",
+        dark: "#c62828",
     },
     warning: {
         light: "#56667d",

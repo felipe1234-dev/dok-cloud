@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { useTheme } from "@providers";
+import { lighten } from "@functions";
 import { ButtonProps } from "./index";
 
 interface ButtonStyleParams extends ButtonProps {}
@@ -10,6 +11,7 @@ function useStyles(params: ButtonStyleParams) {
         transparent = false,
         fullWidth = false,
         outlined = false,
+        disabled = false,
         variant = "primary",
         tone = "light",
         textVariant = "secondary",
@@ -36,7 +38,11 @@ function useStyles(params: ButtonStyleParams) {
             borderRadius: round ? 1000 : 0,
             borderStyle: "solid",
             borderWidth: outlined ? 1.5 : 0,
+            opacity: disabled ? 0.5 : 1,
             ...style,
+        },
+        indicator: {
+            color: lighten(mainColor, 0.5),
         },
     });
 }

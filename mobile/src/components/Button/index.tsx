@@ -2,6 +2,7 @@ import {
     TouchableOpacity,
     TouchableOpacityProps,
     ViewStyle,
+    ActivityIndicator
 } from "react-native";
 import { Variant, ColorTone } from "@types";
 import useStyles from "./useStyles";
@@ -11,6 +12,7 @@ interface ButtonProps extends Omit<TouchableOpacityProps, "style"> {
     fullWidth?: boolean;
     transparent?: boolean;
     outlined?: boolean;
+    loading?: boolean;
     variant?: Variant;
     tone?: ColorTone;
     textVariant?: Variant;
@@ -19,7 +21,7 @@ interface ButtonProps extends Omit<TouchableOpacityProps, "style"> {
 }
 
 function Button(props: ButtonProps) {
-    const { children, ...rest } = props;
+    const { children, loading = false, ...rest } = props;
     const styles = useStyles(props);
 
     return (
@@ -27,7 +29,13 @@ function Button(props: ButtonProps) {
             {...rest}
             style={styles.button}
         >
-            {children}
+            {loading ? (
+                <ActivityIndicator 
+                    animating
+                    color={styles.indicator.color}
+                    size="small"   
+                />
+            ) :children}
         </TouchableOpacity>
     );
 }

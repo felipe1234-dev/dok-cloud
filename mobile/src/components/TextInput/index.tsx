@@ -17,10 +17,11 @@ interface TextInputProps
     onChangeText?: (text: string, maskedText?: string) => void | Promise<void>;
     left?: ReactNode;
     right?: ReactNode;
+    error?: ReactNode;
 }
 
 function TextInput(props: TextInputProps) {
-    const { label, left, right, ...rest } = props;
+    const { label, left, right, error, ...rest } = props;
     const {
         focused,
         touching,
@@ -55,6 +56,7 @@ function TextInput(props: TextInputProps) {
                 />
                 {right && right}
             </View>
+            {error && <Text style={styles.error}>{error}</Text>}
         </View>
     );
 }
