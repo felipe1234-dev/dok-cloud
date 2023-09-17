@@ -18,7 +18,7 @@ function useStyles(params: TextInputStyleParams) {
         touching,
     } = params;
 
-    let borderColor = palette.text.main;
+    let borderColor = palette.secondary.main;
 
     if (focused) {
         borderColor = palette.primary.main;

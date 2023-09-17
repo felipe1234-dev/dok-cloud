@@ -46,12 +46,12 @@ function TextInput(props: TextInputProps) {
             >
                 {left && left}
                 <NativeTextInput
+                    {...rest}
                     onChangeText={handleOnChangeText}
                     onFocus={handleOnFocus}
                     onBlur={handleOnBlur}
                     placeholderTextColor={styles.input.placeholderTextColor}
                     style={styles.input}
-                    {...rest}
                 />
                 {right && right}
             </View>
