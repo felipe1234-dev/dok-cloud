@@ -1,5 +1,5 @@
 import { bucket } from "@databases";
-import { generateUid } from "dok-cloud-globals";
+import { generateUid } from "dok-fortress-globals";
 
 import fs from "fs";
 import os from "os";

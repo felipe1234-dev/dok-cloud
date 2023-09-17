@@ -1,5 +1,5 @@
 import { RouteController } from "@typings";
-import { codes } from "dok-cloud-globals";
+import { codes } from "dok-fortress-globals";
 import { UsersDB } from "@databases";
 import { ServerError, Unauthenticated } from "@errors";
 

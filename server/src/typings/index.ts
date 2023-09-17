@@ -3,7 +3,7 @@ import {
     Request as ExpressRequest,
     Response as ExpressResponse,
 } from "express";
-import { User, codes } from "dok-cloud-globals";
+import { User, codes } from "dok-fortress-globals";
 
 export interface App extends Express {}
 

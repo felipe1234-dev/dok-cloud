@@ -1,5 +1,5 @@
 import DBAccess from "@services/DBAccess";
-import { Folder } from "dok-cloud-globals";
+import { Folder } from "dok-fortress-globals";
 
 class FoldersDB extends DBAccess<Folder> {
     constructor() {

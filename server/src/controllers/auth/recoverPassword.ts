@@ -2,7 +2,7 @@ import { RouteController, Request } from "@typings";
 import { UsersDB } from "@databases";
 import { Email } from "@services";
 import { emailTemplates } from "@utils";
-import { codes, generateUid } from "dok-cloud-globals";
+import { codes, generateUid } from "dok-fortress-globals";
 import { MissingURLParam, NotFound, ServerError } from "@errors";
 
 const recoverPasswordController: RouteController = async (

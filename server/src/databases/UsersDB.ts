@@ -1,5 +1,5 @@
 import DBAccess from "@services/DBAccess";
-import { User } from "dok-cloud-globals";
+import { User } from "dok-fortress-globals";
 
 class UsersDB extends DBAccess<User> {
     constructor() {

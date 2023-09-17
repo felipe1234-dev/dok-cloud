@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { User, Document, Folder } from "dok-cloud-globals";
+import { User, Document, Folder } from "dok-fortress-globals";
 import { auth } from "./firebase";
 import { isLocal, JSONToURLQuery } from "@functions";
 import { Response, isResponse, Filters } from "@types";

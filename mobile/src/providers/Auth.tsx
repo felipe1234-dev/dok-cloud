@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { User, codes } from "dok-cloud-globals";
+import { User, codes } from "dok-fortress-globals";
 import { Api } from "@services";
 import { useLoader } from "./Loader";
 

@@ -1,5 +1,5 @@
 import { DocumentsDB } from "@databases";
-import { codes } from "dok-cloud-globals";
+import { codes } from "dok-fortress-globals";
 import { RouteController, Request } from "@typings";
 import {
     MissingURLParam,

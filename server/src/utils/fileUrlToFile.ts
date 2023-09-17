@@ -1,6 +1,6 @@
 import { HTTPReq } from "@services";
 import { File } from "@typings";
-import { generateUid } from "dok-cloud-globals";
+import { generateUid } from "dok-fortress-globals";
 import getFileExtension from "./getFileExtension";
 
 async function fileUrlToFile(url: string): Promise<File> {

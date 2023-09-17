@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { Folder, Document } from "dok-cloud-globals";
+import { Folder, Document } from "dok-fortress-globals";
 
 import { Directory } from "@types";
 import { useAsyncEffect } from "@hooks";

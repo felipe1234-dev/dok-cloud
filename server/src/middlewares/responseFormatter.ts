@@ -1,5 +1,5 @@
 import { RouteMiddleware } from "@typings";
-import { codes } from "dok-cloud-globals";
+import { codes } from "dok-fortress-globals";
 
 const responseFormatterMiddleware: RouteMiddleware = (req, res, next) => {
     res.sendResponse = (data) => {

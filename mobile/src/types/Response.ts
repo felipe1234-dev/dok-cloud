@@ -1,4 +1,4 @@
-import { codes } from "dok-cloud-globals";
+import { codes } from "dok-fortress-globals";
 
 interface Response {
     status: number;

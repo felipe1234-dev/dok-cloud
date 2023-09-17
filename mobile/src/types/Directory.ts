@@ -1,4 +1,4 @@
-import { Folder, Document } from "dok-cloud-globals";
+import { Folder, Document } from "dok-fortress-globals";
 
 interface Directory extends Folder {
     directories: Directory[];

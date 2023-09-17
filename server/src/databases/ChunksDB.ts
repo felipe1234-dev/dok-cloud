@@ -1,5 +1,5 @@
 import DBAccess from "@services/DBAccess";
-import { Chunk } from "dok-cloud-globals";
+import { Chunk } from "dok-fortress-globals";
 
 class ChunksDB extends DBAccess<Chunk> {
     constructor() {

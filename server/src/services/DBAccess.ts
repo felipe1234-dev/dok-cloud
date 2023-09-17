@@ -1,6 +1,6 @@
 import { CollectionReference, Query } from "@google-cloud/firestore";
 import { firestore } from "@databases";
-import { Operator } from "dok-cloud-globals";
+import { Operator } from "dok-fortress-globals";
 
 class DBAccess<T = { [key: string]: any }> {
     protected _index: number;

@@ -1,4 +1,4 @@
-import { Operator } from "dok-cloud-globals";
+import { Operator } from "dok-fortress-globals";
 
 interface Filters<T> {
     where?: Array<[key: keyof T, operator: Operator, value: any]>;

@@ -2,7 +2,7 @@ import configs from "@configs";
 import { Request, RouteController } from "@typings";
 import { Hash, Token } from "@services";
 import { UsersDB } from "@databases";
-import { codes, generateUid, validateEmail } from "dok-cloud-globals";
+import { codes, generateUid, validateEmail } from "dok-fortress-globals";
 import { InvalidParam, MissingBodyParam, ServerError } from "@errors";
 
 const loginUserController: RouteController = async (

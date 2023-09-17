@@ -1,8 +1,8 @@
 import { Request, RouteController } from "@typings";
-import { codes, validateEmail } from "dok-cloud-globals";
+import { codes, validateEmail } from "dok-fortress-globals";
 import { InvalidParam, MissingBodyParam, ServerError } from "@errors";
 import { Hash } from "@services";
-import { User } from "dok-cloud-globals";
+import { User } from "dok-fortress-globals";
 import { UsersDB } from "@databases";
 
 const registerUserController: RouteController = async (

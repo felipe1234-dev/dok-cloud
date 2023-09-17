@@ -1,6 +1,6 @@
 import configs from "@configs";
 import { app } from "@databases";
-import { User } from "dok-cloud-globals";
+import { User } from "dok-fortress-globals";
 import HTTPReq from "./HTTPReq";
 
 class Token {

@@ -1,18 +1,23 @@
 {
-  "name": "dok-cloud-mobile-app",
+  "name": "dok-fortress-mobile-app",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "update": "npm i dok-fortress-globals@latest",
+    "prestart": "npm run update",
     "start": "expo start",
+    "preandroid": "npm run update",
     "android": "expo start --android",
+    "preios": "npm run update",
     "ios": "expo start --ios",
+    "preweb": "npm run update",
     "web": "expo start --web"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^19.0.0",
     "axios": "^1.5.0",
-    "dok-cloud-globals": "1.0.7",
+    "dok-fortress-globals": "^1.0.8",
     "expo": "~49.0.8",
     "expo-linear-gradient": "~12.3.0",
     "expo-status-bar": "~1.6.0",

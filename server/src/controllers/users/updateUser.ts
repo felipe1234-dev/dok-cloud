@@ -1,5 +1,5 @@
 import { Request, RouteController } from "@typings";
-import { codes, User } from "dok-cloud-globals";
+import { codes, User } from "dok-fortress-globals";
 import { UsersDB } from "@databases";
 import { MissingURLParam, NotFound, ServerError, Unauthorized } from "@errors";
 

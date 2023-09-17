@@ -1,8 +1,13 @@
 import { Request, RouteController } from "@typings";
-import { codes, Document } from "dok-cloud-globals";
+import { codes, Document } from "dok-fortress-globals";
 import { DocumentsDB, FoldersDB } from "@databases";
 import { getFileExtension, getFileMimetype } from "@utils";
-import { MissingBodyParam, NotFound, ServerError, Unauthenticated } from "@errors";
+import {
+    MissingBodyParam,
+    NotFound,
+    ServerError,
+    Unauthenticated,
+} from "@errors";
 
 const uploadDocumentController: RouteController = async (
     req: {

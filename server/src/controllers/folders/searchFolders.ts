@@ -1,5 +1,5 @@
 import { FoldersDB } from "@databases";
-import { Folder, codes } from "dok-cloud-globals";
+import { Folder, codes } from "dok-fortress-globals";
 import { RouteController, Request } from "@typings";
 import { stringToWhere } from "@utils";
 import { ServerError, Unauthenticated } from "@errors";

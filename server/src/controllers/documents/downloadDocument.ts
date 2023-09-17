@@ -1,4 +1,4 @@
-import { codes } from "dok-cloud-globals";
+import { codes } from "dok-fortress-globals";
 import { Request, RouteController } from "@typings";
 import { DocumentsDB, ChunksDB } from "@databases";
 import {

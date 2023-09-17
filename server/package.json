@@ -1,8 +1,8 @@
 {
-    "name": "dok-cloud-api",
+    "name": "dok-fortress-api",
     "scripts": {
         "lint": "eslint --ext .js,.ts .",
-        "update-globals": "npm i dok-cloud-globals@latest",
+        "update-globals": "npm i dok-fortress-globals@latest",
         "prebuild": "rm -rf build && npm run update-globals",
         "build": "tsc --esModuleInterop",
         "postbuild": "node scripts/postbuild.js",
@@ -26,7 +26,7 @@
         "bcrypt": "^5.1.0",
         "busboy": "^1.6.0",
         "cors": "^2.8.5",
-        "dok-cloud-globals": "^1.0.8",
+        "dok-fortress-globals": "^1.0.8",
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
         "ffmpeg": "0.0.4",

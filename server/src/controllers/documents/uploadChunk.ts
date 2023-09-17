@@ -1,5 +1,5 @@
 import { Request, RouteController } from "@typings";
-import { Chunk, codes } from "dok-cloud-globals";
+import { Chunk, codes } from "dok-fortress-globals";
 import { DocumentsDB, ChunksDB } from "@databases";
 import {
     Forbidden,

@@ -1,5 +1,5 @@
 import ServerError from "./ServerError";
-import { codes } from "dok-cloud-globals";
+import { codes } from "dok-fortress-globals";
 
 class OverloadError extends ServerError {
     constructor(status = 400) {

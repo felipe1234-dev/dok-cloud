@@ -1,4 +1,4 @@
-import { operators, Operator } from "dok-cloud-globals";
+import { operators, Operator } from "dok-fortress-globals";
 
 function stringToWhere<T>(str: string) {
     if (!str) return undefined;
