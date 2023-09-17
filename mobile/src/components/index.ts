@@ -6,3 +6,4 @@ export * from "./ScreenLoader";
 export * from "./TextInput";
 export * from "./Icon";
 export * from "./CustomToast";
+export * from "./Link";
