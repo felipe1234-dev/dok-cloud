@@ -15,4 +15,7 @@ interface Palette {
     success: ColorTones;
 }
 
-export type { Palette, ColorTones };
+type Variant = keyof Palette;
+type ColorTone = keyof ColorTones;
+
+export type { Palette, ColorTones, Variant, ColorTone };

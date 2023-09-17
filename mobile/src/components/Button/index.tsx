@@ -3,34 +3,29 @@ import {
     TouchableOpacityProps,
     ViewStyle,
 } from "react-native";
-import { mergeStyleSheets } from "@functions";
+import { Variant, ColorTone } from "@types";
 import useStyles from "./useStyles";
 
 interface ButtonProps extends Omit<TouchableOpacityProps, "style"> {
     round?: boolean;
     fullWidth?: boolean;
+    transparent?: boolean;
+    outlined?: boolean;
+    variant?: Variant;
+    tone?: ColorTone;
+    textVariant?: Variant;
+    textTone?: ColorTone;
     style?: ViewStyle;
 }
 
 function Button(props: ButtonProps) {
-    const {
-        round = false,
-        fullWidth = false,
-        style,
-        children,
-        ...rest
-    } = props;
-    const styles = useStyles();
+    const { children, ...rest } = props;
+    const styles = useStyles(props);
 
     return (
         <TouchableOpacity
-            style={mergeStyleSheets([
-                styles.button,
-                [styles.fullWidth, fullWidth],
-                [styles.round, round],
-                [style, !!style],
-            ])}
             {...rest}
+            style={styles.button}
         >
             {children}
         </TouchableOpacity>
@@ -38,3 +33,4 @@ function Button(props: ButtonProps) {
 }
 
 export { Button };
+export type { ButtonProps };
