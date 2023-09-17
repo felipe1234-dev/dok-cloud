@@ -3,6 +3,7 @@ import { User, Document, Folder } from "dok-fortress-globals";
 import { auth } from "./firebase";
 import { isLocal, JSONToURLQuery } from "@functions";
 import { Response, isResponse, Filters } from "@types";
+import { LocalStorage } from "./LocalStorage";
 
 const apiURL = isLocal()
     ? "http://127.0.0.1:5001/dokcloud-95c82/us-central1/default"
@@ -41,7 +42,7 @@ const Api = {
     auth: {
         recoverSession: async () => {
             try {
-                const refreshToken = localStorage.getItem("refreshToken");
+                const refreshToken = await LocalStorage.getItem("refreshToken");
 
                 const { data } = await httpEndpoint.post("/auth/session", {
                     refreshToken,
@@ -53,7 +54,7 @@ const Api = {
 
                 return user;
             } catch {
-                localStorage.removeItem("refreshToken");
+                await LocalStorage.removeItem("refreshToken");
                 await auth.signOut();
                 return undefined;
             }
@@ -74,8 +75,8 @@ const Api = {
             const rememberMeToken: string = data.rememberMeToken;
 
             httpEndpoint.defaults.headers.common.authorization = token;
-            localStorage.setItem("refreshToken", refreshToken);
-            localStorage.setItem("rememberMeToken", rememberMeToken);
+            await LocalStorage.setItem("refreshToken", refreshToken);
+            await LocalStorage.setItem("rememberMeToken", rememberMeToken);
             await auth.signInAnonymously();
 
             return new User(data.user);
@@ -83,7 +84,7 @@ const Api = {
         logout: async () => {
             await httpEndpoint.post("/auth/logout");
             httpEndpoint.defaults.headers.common.authorization = "";
-            localStorage.removeItem("refreshToken");
+            await LocalStorage.removeItem("refreshToken");
             await auth.signOut();
         },
         register: async (name: string, email: string, password: string) => {
