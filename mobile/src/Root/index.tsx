@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { SafeAreaView } from "react-native";
 import { useFonts } from "expo-font";
 
-import { ScreenLoader } from "@components";
+import { ScreenLoader, CustomToast } from "@components";
 import { useNavigator, useTheme } from "@providers";
 import { fonts } from "@constants";
 
@@ -28,6 +28,7 @@ function Root() {
                 color={palette.primary.main}
                 size="large"
             />
+            <CustomToast />
         </SafeAreaView>
     );
 }

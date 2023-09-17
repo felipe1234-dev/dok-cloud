@@ -16,6 +16,7 @@
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^19.0.0",
+    "@react-native-async-storage/async-storage": "1.18.2",
     "axios": "^1.5.0",
     "dok-fortress-globals": "^1.0.8",
     "expo": "~49.0.8",
@@ -27,6 +28,7 @@
     "react-native": "0.72.4",
     "react-native-dotenv": "^3.4.9",
     "react-native-easy-icon": "^1.0.10",
+    "react-native-toast-message": "^2.1.6",
     "react-native-vector-icons": "^10.0.0",
     "react-native-web": "~0.19.6"
   },
