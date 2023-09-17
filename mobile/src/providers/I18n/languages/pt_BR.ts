@@ -7,11 +7,14 @@ const pt_BR: TranslationTable = {
     "Don't have an account yet?": "Ainda não tem uma conta?",
     "Manage your files in a simple way":
         "Gerencie seus arquivos em uma maneira simples",
-    "Storage and secure your files in the cloud infinitely with password and fingerprint":
-        "Armazene e proteja seus arquivos na nuvem com espaço infinito com senhas e digital",
+    "Storage and secure your files in the cloud infinitely in DokFortress":
+        "Armazene e proteja seus arquivos na nuvem com espaço infinito com DokFortress",
     Login: "Entrar",
     "example@example.com": "exemplo@exemplo.com",
     Password: "Senha",
+    "Enter your email address": "Digite o seu endereço de email",
+    "Enter your password": "Digite a sua senha",
+    "New here? Register!": "Novo aqui? Registre-se!",
 };
 
 export { pt_BR };

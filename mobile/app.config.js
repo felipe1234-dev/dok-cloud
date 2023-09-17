@@ -6,8 +6,8 @@ dotenv.config({
 });
 
 export default {
-  name: "dok-cloud",
-  slug: "dok-cloud",
+  name: "dok-fortress",
+  slug: "dok-fortress",
   version: "1.0.0",
   orientation: "portrait",
   icon: "./assets/icon.png",

@@ -3,14 +3,14 @@ import { SafeAreaView } from "react-native";
 import { useFonts } from "expo-font";
 
 import { ScreenLoader } from "@components";
-import { useRouter, useTheme } from "@providers";
+import { useNavigator, useTheme } from "@providers";
 import { fonts } from "@constants";
 
 import useStyles from "./useStyles";
 
 function Root() {
     const [showLoader, setShowLoader] = useState(false);
-    const { screenConfig, CurrentScreen } = useRouter();
+    const { screenConfig, CurrentScreen } = useNavigator();
     const { palette } = useTheme();
     const [loaded] = useFonts(fonts);
     const styles = useStyles();
@@ -23,7 +23,7 @@ function Root() {
     return (
         <SafeAreaView style={styles.root}>
             <CurrentScreen />
-            <ScreenLoader 
+            <ScreenLoader
                 animating={showLoader || !loaded}
                 color={palette.primary.main}
                 size="large"

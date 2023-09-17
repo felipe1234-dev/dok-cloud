@@ -20,7 +20,7 @@ function lighten(color: string, light: number): string {
 
     if (color.length !== 7) {
         const num = color.replace("#", "");
-        color = `#${num.repeat(6/num.length).slice(0, 6)}`;
+        color = `#${num.repeat(6 / num.length).slice(0, 6)}`;
     }
 
     let r = parseInt(color.substr(1, 2), 16);
@@ -40,4 +40,4 @@ function lighten(color: string, light: number): string {
     return toHexString(r, g, b);
 }
 
-export {lighten};
+export { lighten };

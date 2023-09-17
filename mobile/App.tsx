@@ -4,7 +4,7 @@ import {
     I18nProvider,
     ThemeProvider,
     LoaderProvider,
-    RouterProvider,
+    NavigatorProvider,
     AuthProvider,
     TreeProvider,
 } from "./src/providers";
@@ -15,7 +15,7 @@ function App() {
         I18nProvider,
         ThemeProvider,
         LoaderProvider,
-        RouterProvider,
+        NavigatorProvider,
         AuthProvider,
         TreeProvider,
     ];

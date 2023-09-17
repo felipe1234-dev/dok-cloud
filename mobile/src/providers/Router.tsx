@@ -11,9 +11,9 @@ interface RouterValue {
     CurrentScreen: () => JSX.Element;
 }
 
-const RouterContext = createContext<RouterValue | undefined>(undefined);
+const NavigatorContext = createContext<RouterValue | undefined>(undefined);
 
-function RouterProvider(props: { children: ReactNode }) {
+function NavigatorProvider(props: { children: ReactNode }) {
     const [screenName, setScreenName] = useState(indexScreen?.name || "");
     const [screenParams, setScreenParams] = useState<ScreenParams>({});
 
@@ -47,19 +47,19 @@ function RouterProvider(props: { children: ReactNode }) {
     };
 
     return (
-        <RouterContext.Provider
+        <NavigatorContext.Provider
             value={{ navigate, CurrentScreen, screenConfig }}
         >
             {props.children}
-        </RouterContext.Provider>
+        </NavigatorContext.Provider>
     );
 }
 
-function useRouter() {
-    const context = useContext(RouterContext);
+function useNavigator() {
+    const context = useContext(NavigatorContext);
     if (!context)
-        throw new Error("useRouter must be used within a RouterProvider");
+        throw new Error("useNavigator must be used within a NavigatorProvider");
     return context;
 }
 
-export { RouterContext, RouterProvider, useRouter };
+export { NavigatorContext, NavigatorProvider, useNavigator };

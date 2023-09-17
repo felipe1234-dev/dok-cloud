@@ -1,13 +1,19 @@
-import { useRouter } from "@providers";
+import { useState } from "react";
+import { useNavigator } from "@providers";
 
 function useLogic() {
-    const { navigate } = useRouter();
+    const [showPassword, setShowPassword] = useState(false);
+    const { navigate } = useNavigator();
 
-    const handleGoToLoginScreen = () => {
-        navigate("Login");
+    const handleLogin = () => {
+        navigate("Home");
     };
-    
-    return { handleGoToLoginScreen };
+
+    const handleTogglePasswordView = () => {
+        setShowPassword((prev) => !prev);
+    };
+
+    return { showPassword, handleLogin, handleTogglePasswordView };
 }
 
 export default useLogic;
