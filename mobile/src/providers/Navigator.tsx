@@ -1,13 +1,13 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { screenConfigs } from "@constants";
-import { ScreenConfig, ScreenParams } from "@types";
+import { ScreenConfig, ScreenParams, ScreenName } from "@types";
 import { Protected } from "@components";
 
 const indexScreen = screenConfigs.find((screen) => screen.index);
 
 interface NavigatorValue {
     screenConfig?: ScreenConfig;
-    navigate: (name: string, params?: ScreenParams) => void;
+    navigate: (name: ScreenName, params?: ScreenParams) => void;
     CurrentScreen: () => JSX.Element;
 }
 
@@ -41,7 +41,7 @@ function NavigatorProvider(props: { children: ReactNode }) {
         </Wrapper>
     );
 
-    const navigate = (name: string, params?: ScreenParams) => {
+    const navigate = (name: ScreenName, params?: ScreenParams) => {
         setScreenName(name);
         setScreenParams(params || {});
     };

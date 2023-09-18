@@ -1,5 +1,5 @@
 export * from "./Theme";
-export * from "./Router";
+export * from "./Navigator";
 export * from "./Loader";
 export * from "./Auth";
 export * from "./Tree";
