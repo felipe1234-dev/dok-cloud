@@ -39,4 +39,5 @@ function useTheme() {
     return context;
 }
 
-export { ThemeContext, ThemeProvider, useTheme };
+export { ThemeContext, ThemeProvider, useTheme, palettes };
+export type { Theme, ThemeValue };

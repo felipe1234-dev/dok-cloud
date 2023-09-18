@@ -123,7 +123,7 @@ function useDocTree() {
 }
 
 export { TreeContext, TreeProvider, useDocTree };
-export type { TreeValue };
+export type { TreeValue, Tree };
 
 function createTree(
     parent: Folder,

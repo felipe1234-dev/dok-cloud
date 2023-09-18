@@ -70,3 +70,4 @@ function useAuth() {
 }
 
 export { AuthContext, AuthProvider, useAuth };
+export type { AuthValue };
