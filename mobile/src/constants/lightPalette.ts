@@ -17,14 +17,14 @@ const lightPalette: Palette = {
         dark: "#333333",
     },
     highlight: {
-        light: "#ff9800",
-        main: "#ed6c02",
-        dark: "#e65100",
+        light: "#a180fa",
+        main: "#8960f9",
+        dark: "#581df6",
     },
     success: {
-        light: "#56667d",
-        main: "#222831",
-        dark: "#000",
+        light: "#4caf50",
+        main: "#2e7d32",
+        dark: "#1b5e20",
     },
     error: {
         light: "#ef5350",
