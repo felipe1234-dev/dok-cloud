@@ -2,7 +2,7 @@ import { View, Text, Image } from "react-native";
 
 import { LOGIN_SCREEN } from "@assets/images";
 import { useI18n } from "@providers";
-import { TextInput, Button, Icon } from "@components";
+import { TextInput, Button, Icon, Link } from "@components";
 
 import useStyles from "./useStyles";
 import useLogic from "./useLogic";
@@ -86,13 +86,19 @@ function LoginScreen() {
                     tone="main"
                     textVariant="text"
                     textTone="light"
-                    style={styles.loginButton}
+                    style={styles.login}
                     disabled={buttonDisabled}
                     onPress={handleLogin}
                     loading={loading}
                 >
                     {t("Login")}
                 </Button>
+                <Link
+                    to="Register"
+                    style={styles.register}
+                >
+                    {t("Don't have an account? Create an account!")}
+                </Link>
             </View>
         </View>
     );

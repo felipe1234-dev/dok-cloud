@@ -67,13 +67,18 @@ function useStyles() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            gap: 8,
             width: "100%",
             paddingHorizontal: 30,
         },
-        loginButton: {
+        login: {
             borderRadius: 5,
             fontWeight: "600",
             padding: 10,
+        },
+        register: {
+            textAlign: "center",
+            color: palette.primary.main,
         },
     });
 }
