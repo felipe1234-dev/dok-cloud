@@ -1,10 +1,10 @@
 import { createContext, useContext, ReactNode } from "react";
-import { useI18n } from "./I18n";
+import { useI18n, ReplaceMatrix } from "./I18n";
 import Toast, { ToastShowParams } from "react-native-toast-message";
 
 interface ToastParams extends Omit<ToastShowParams, "text1" | "text2"> {
-    title?: string;
-    description?: string;
+    title?: string | [string, ReplaceMatrix];
+    description?: string | [string, ReplaceMatrix];
 }
 
 interface ToastValue {
@@ -21,10 +21,23 @@ function ToastProvider(props: { children: ReactNode }) {
     const { t } = useI18n();
 
     const show = (params: ToastParams) => {
-        const { title, description, ...rest } = params;
+        let { title = "", description = "", ...rest } = params;
+
+        if (Array.isArray(title)) {
+            title = t(...title);
+        } else {
+            title = t(title);
+        }
+
+        if (Array.isArray(description)) {
+            description = t(...description);
+        } else {
+            description = t(description);
+        }
+
         Toast.show({
-            text1: t(title || ""),
-            text2: t(description || ""),
+            text1: title,
+            text2: description,
             ...rest,
         });
     };
@@ -69,3 +82,4 @@ function useToast() {
 }
 
 export { ToastContext, ToastProvider, useToast };
+export type { ToastValue, ToastParams };
