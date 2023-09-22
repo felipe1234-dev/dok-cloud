@@ -20,14 +20,19 @@ function Root() {
         setTimeout(() => setShowLoader(false), 3000);
     }, [screenConfig]);
 
-    return (
-        <SafeAreaView style={styles.root}>
-            <CurrentScreen />
+    if (showLoader || !loaded) {
+        return (
             <ScreenLoader
-                animating={showLoader || !loaded}
+                animating
                 color={palette.primary.main}
                 size="large"
             />
+        );
+    }
+
+    return (
+        <SafeAreaView style={styles.root}>
+            <CurrentScreen />
             <CustomToast />
         </SafeAreaView>
     );
