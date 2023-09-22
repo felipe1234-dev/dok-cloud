@@ -9,6 +9,9 @@ const logRequestsMiddleware: RouteMiddleware = (req, res, next) => {
         "from",
         req.headers.origin
     );
+    console.log("req.query:", req.query);
+    console.log("req.params:", req.params);
+    console.log("req.body:", req.body);
     return next();
 };
 
