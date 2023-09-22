@@ -19,9 +19,15 @@ function useLogic() {
     const checkEmail = (text: string) => {
         const isValid = validateEmail(text);
 
+        const getErrorMessage = () => {
+            if (isValid) return "";
+            if (!text) return "Email can not be empty";
+            return "Invalid email";
+        };
+
         setErrors((prev) => ({
             ...prev,
-            email: isValid ? "" : "Invalid email",
+            email: getErrorMessage(),
         }));
 
         return isValid;
@@ -30,9 +36,15 @@ function useLogic() {
     const checkPassword = (text: string) => {
         const isValid = text.length > 0;
 
+        const getErrorMessage = () => {
+            if (isValid) return "";
+            if (!text) return "Password can not be empty";
+            return "Invalid password";
+        };
+
         setErrors((prev) => ({
             ...prev,
-            password: isValid ? "" : "Invalid password",
+            password: getErrorMessage(),
         }));
 
         return isValid;
