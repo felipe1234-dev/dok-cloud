@@ -1,27 +1,59 @@
 import { useState } from "react";
 import { validateEmail } from "dok-fortress-globals";
-import { useAuth, useNavigator, useToast } from "@providers";
+import { useNavigator, useToast } from "@providers";
+import { Api } from "@services";
 
 function useLogic() {
     const [loading, setLoading] = useState(false);
+
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
     const [errors, setErrors] = useState<{ [field: string]: string }>({
+        name: "",
         email: "",
         password: "",
+        confirmPassword: "",
     });
 
-    const { login } = useAuth();
     const { navigate } = useNavigator();
     const toast = useToast();
+
+    const checkName = (text: string) => {
+        const [firstName, lastName] = text.split(" ");
+        const isValid = !!(firstName && lastName);
+
+        const getErrorMessage = () => {
+            if (isValid) return "";
+            if (!firstName && !lastName) return "Name can not be empty";
+            if (!firstName) return "Missing first name";
+            if (!lastName) return "Missing last name";
+            return "Invalid name";
+        };
+
+        setErrors((prev) => ({
+            ...prev,
+            name: getErrorMessage(),
+        }));
+
+        return isValid;
+    };
 
     const checkEmail = (text: string) => {
         const isValid = validateEmail(text);
 
+        const getErrorMessage = () => {
+            if (isValid) return "";
+            if (!text) return "Email can not be empty";
+            return "Invalid email";
+        };
+
         setErrors((prev) => ({
             ...prev,
-            email: isValid ? "" : "Invalid email",
+            email: getErrorMessage(),
         }));
 
         return isValid;
@@ -30,29 +62,55 @@ function useLogic() {
     const checkPassword = (text: string) => {
         const isValid = text.length > 0;
 
+        const getErrorMessage = () => {
+            if (isValid) return "";
+            if (!text) return "Password can not be empty";
+            return "Invalid password";
+        };
+
         setErrors((prev) => ({
             ...prev,
-            password: isValid ? "" : "Invalid password",
+            password: getErrorMessage(),
         }));
 
         return isValid;
     };
 
-    const handleLogin = async () => {
+    const checkConfirmPassword = (text: string) => {
+        const isValid = text === password;
+
+        setErrors((prev) => ({
+            ...prev,
+            confirmPassword: isValid ? "" : "Password does not match",
+        }));
+
+        return isValid;
+    };
+
+    const handleRegister = async () => {
         try {
             setLoading(true);
 
-            const bothAreValid = checkEmail(email) && checkPassword(password);
-            if (!bothAreValid) return;
+            const canProceed =
+                checkName(name) &&
+                checkEmail(email) &&
+                checkPassword(password) &&
+                checkConfirmPassword(confirmPassword);
+            if (!canProceed) return;
 
-            await login(email, password, false);
+            await Api.auth.register(name, email, password);
 
-            navigate("Home");
+            navigate("Login");
+
+            toast.success({
+                title: "Account successfully registered",
+                description: "Now, you can login with your account",
+            });
         } catch (err) {
             const error = err as Error;
             console.error("error", error);
             toast.error({
-                title: "Error logging in",
+                title: "Error creating a new account",
                 description: error.message,
             });
         } finally {
@@ -62,6 +120,11 @@ function useLogic() {
 
     const handleTogglePasswordView = () => {
         setShowPassword((prev) => !prev);
+    };
+
+    const handleNameChange = (text: string) => {
+        setName(text);
+        checkName(text);
     };
 
     const handleEmailChange = (text: string) => {
@@ -74,6 +137,11 @@ function useLogic() {
         checkPassword(text);
     };
 
+    const handleConfirmPasswordChange = (text: string) => {
+        setConfirmPassword(text);
+        checkConfirmPassword(text);
+    };
+
     const buttonDisabled =
         Object.values(errors).some((error) => !!error) || loading;
 
@@ -82,11 +150,15 @@ function useLogic() {
         errors,
         buttonDisabled,
         showPassword,
-        handleLogin,
+        handleRegister,
+        handleNameChange,
+        name,
         handleEmailChange,
         email,
         handlePasswordChange,
         password,
+        handleConfirmPasswordChange,
+        confirmPassword,
         handleTogglePasswordView,
     };
 }

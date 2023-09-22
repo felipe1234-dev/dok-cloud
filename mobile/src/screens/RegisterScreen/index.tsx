@@ -1,6 +1,6 @@
 import { View, Text, Image } from "react-native";
 
-import { LOGIN_SCREEN } from "@assets/images";
+import { REGISTER_SCREEN } from "@assets/images";
 import { useI18n } from "@providers";
 import { TextInput, Button, Icon, Link } from "@components";
 
@@ -14,12 +14,16 @@ function RegisterScreen() {
         errors,
         buttonDisabled,
         showPassword,
+        handleNameChange,
+        name,
         handleEmailChange,
         email,
         handlePasswordChange,
         password,
+        handleConfirmPasswordChange,
+        confirmPassword,
         handleTogglePasswordView,
-        handleLogin,
+        handleRegister,
     } = useLogic();
     const styles = useStyles();
 
@@ -32,18 +36,28 @@ function RegisterScreen() {
     return (
         <View style={styles.main}>
             <Image
-                source={LOGIN_SCREEN}
+                source={REGISTER_SCREEN}
                 style={styles.image}
             />
 
             <View style={styles.header}>
-                <Text style={styles.title}>{t("Welcome back! 👋")}</Text>
+                <Text style={styles.title}>{t("You come in peace 👋")}</Text>
                 <Text style={styles.subtitle}>
                     {t("Please, enter the details below to continue")}
                 </Text>
             </View>
 
             <View style={styles.form}>
+                <TextInput
+                    {...baseInputProps}
+                    autoComplete="name"
+                    label={t("Name")}
+                    labelStyle={styles.label}
+                    placeholder={t("Enter your first and last name")}
+                    onChangeText={handleNameChange}
+                    value={name}
+                    error={t(errors.name || "")}
+                />
                 <TextInput
                     {...baseInputProps}
                     autoComplete="email"
@@ -77,6 +91,16 @@ function RegisterScreen() {
                     value={password}
                     error={t(errors.password || "")}
                 />
+                <TextInput
+                    {...baseInputProps}
+                    secureTextEntry={!showPassword}
+                    label={t("Confirm password")}
+                    labelStyle={styles.label}
+                    placeholder={t("Enter your password again")}
+                    onChangeText={handleConfirmPasswordChange}
+                    value={confirmPassword}
+                    error={t(errors.confirmPassword || "")}
+                />
             </View>
 
             <View style={styles.footer}>
@@ -86,18 +110,18 @@ function RegisterScreen() {
                     tone="main"
                     textVariant="text"
                     textTone="light"
-                    style={styles.login}
+                    style={styles.register}
                     disabled={buttonDisabled}
-                    onPress={handleLogin}
+                    onPress={handleRegister}
                     loading={loading}
                 >
-                    {t("Login")}
+                    {t("Register")}
                 </Button>
                 <Link
-                    to="Register"
-                    style={styles.register}
+                    to="Login"
+                    style={styles.login}
                 >
-                    {t("Don't have an account? Create an account!")}
+                    {t("Already have an account?")}
                 </Link>
             </View>
         </View>

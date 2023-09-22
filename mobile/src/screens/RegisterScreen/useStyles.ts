@@ -24,6 +24,7 @@ function useStyles() {
             height: "100%",
             width: "100%",
             padding: "auto",
+            paddingVertical: 25,
         },
         image: {
             width: imageWidth,
@@ -71,12 +72,12 @@ function useStyles() {
             width: "100%",
             paddingHorizontal: 30,
         },
-        login: {
+        register: {
             borderRadius: 5,
             fontWeight: "600",
             padding: 10,
         },
-        register: {
+        login: {
             textAlign: "center",
             color: palette.primary.main,
         },
