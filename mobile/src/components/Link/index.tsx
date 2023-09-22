@@ -1,7 +1,7 @@
 import { Text, TextProps, TextStyle } from "react-native";
 import { View, ViewProps } from "react-native";
 
-import { Variant, ColorTone } from "@types";
+import { Variant, ColorTone, ScreenName } from "@types";
 
 import useLogic from "./useLogic";
 import useStyles from "./useStyles";
@@ -10,7 +10,7 @@ interface LinkProps extends TextProps, ViewProps {
     variant?: Variant;
     tone?: ColorTone;
     url?: string;
-    to?: string;
+    to?: ScreenName;
     style?: TextStyle;
 }
 
