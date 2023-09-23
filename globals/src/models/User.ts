@@ -4,9 +4,9 @@ class User {
     public uid: string;
     public name: string;
     public email: string;
-    public bio: string;
     public photo: string;
-    public cover: string;
+    public theme: string;
+    public language: string;
     public salt: string;
     public password: string;
     public deleted: boolean;
@@ -25,9 +25,9 @@ class User {
             uid = generateUid("user-", 5 + 25),
             name = "No name",
             email = "",
-            bio = "",
             photo = "",
-            cover = "",
+            theme = "",
+            language = "",
             salt = "",
             password = "",
             deleted = false,
@@ -45,9 +45,9 @@ class User {
         this.uid = uid;
         this.name = name;
         this.email = email;
-        this.bio = bio;
         this.photo = photo;
-        this.cover = cover;
+        this.theme = theme;
+        this.language = language;
         this.salt = salt;
         this.password = password;
 
@@ -72,9 +72,9 @@ class User {
                 typeof obj.uid === "string" &&
                 typeof obj.name === "string" &&
                 typeof obj.email === "string" &&
-                typeof obj.bio === "string" &&
                 typeof obj.photo === "string" &&
-                typeof obj.cover === "string" &&
+                typeof obj.theme === "string" &&
+                typeof obj.language === "string" &&
                 typeof obj.salt === "string" &&
                 typeof obj.password === "string" &&
                 toDate(obj.createdAt) instanceof Date &&
