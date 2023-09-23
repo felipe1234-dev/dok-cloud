@@ -1,5 +1,5 @@
 import DBAccess from "@services/DBAccess";
-import { Folder } from "dok-fortress-globals";
+import { Folder, User } from "dok-fortress-globals";
 
 class FoldersDB extends DBAccess<Folder> {
     constructor() {
@@ -14,6 +14,36 @@ class FoldersDB extends DBAccess<Folder> {
     public async folderExists(uid: string) {
         const doc = await this.getByUid(uid);
         return !!doc;
+    }
+
+    public getRootUid(user: User) {
+        return `${user.uid}-root`;
+    }
+
+    public getTrashUid(user: User) {
+        return `${user.uid}-trash`;
+    }
+
+    public createTrashFolder(user: User) {
+        const trashFolder = new Folder({
+            uid: this.getTrashUid(user),
+            name: "Trash",
+            description: "Deleted items go to here",
+            createdBy: user.uid,
+        });
+
+        return this.create(trashFolder);
+    }
+
+    public createRootFolder(user: User) {
+        const rootFolder = new Folder({
+            uid: this.getRootUid(user),
+            name: "Root",
+            description: "All items go to here",
+            createdBy: user.uid,
+        });
+
+        return this.create(rootFolder);
     }
 }
 

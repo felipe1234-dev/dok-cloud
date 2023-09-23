@@ -3,7 +3,7 @@ import { codes, validateEmail } from "dok-fortress-globals";
 import { InvalidParam, MissingBodyParam, ServerError } from "@errors";
 import { Hash } from "@services";
 import { User } from "dok-fortress-globals";
-import { UsersDB } from "@databases";
+import { UsersDB, FoldersDB } from "@databases";
 
 const registerUserController: RouteController = async (
     req: Request & {
@@ -39,6 +39,10 @@ const registerUserController: RouteController = async (
         });
 
         await usersDB.uid(newUser.uid).create(newUser);
+
+        const foldersDB = new FoldersDB();
+        await foldersDB.createRootFolder(newUser);
+        await foldersDB.createTrashFolder(newUser);
 
         return res.sendResponse({
             status: 200,
