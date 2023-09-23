@@ -2,7 +2,7 @@ import { generateUid, toDate } from "../functions";
 
 class Folder {
     public uid: string;
-    public folder: string | "root";
+    public folder: string;
     public name: string;
     public description: string;
     public deleted: boolean;
@@ -14,7 +14,7 @@ class Folder {
         const prefix = "folder-";
         const {
             uid = generateUid(prefix, prefix.length + 25),
-            folder = "root",
+            folder = "",
             name = "",
             description = "",
             deleted = false,
@@ -27,7 +27,6 @@ class Folder {
         this.folder = folder;
         this.name = name;
         this.description = description;
-        this.size = size;
 
         this.deleted = deleted;
         if (deletedAt) this.deletedAt = toDate(deletedAt);
