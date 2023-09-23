@@ -6,6 +6,7 @@ import {
     searchFoldersController,
     getFolderController,
     updateFolderController,
+    getFolderStatsController,
 } from "@controllers/folders";
 
 const foldersRouter: HTTPRouter = (api) => {
@@ -29,6 +30,11 @@ const foldersRouter: HTTPRouter = (api) => {
         "/folders/:folderUid",
         useRouteMiddleware(authenticationMiddleware),
         useRouteController(updateFolderController)
+    );
+    api.get(
+        "/folders/:folderUid/stats",
+        useRouteMiddleware(authenticationMiddleware),
+        useRouteController(getFolderStatsController)
     );
 };
 
