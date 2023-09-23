@@ -26,6 +26,7 @@ const codes = {
     FOLDER_DELETED: "FOLDER_DELETED" as const,
     FOLDER_FETCHED: "FOLDER_FETCHED" as const,
     FOLDERS_FETCHED: "FOLDERS_FETCHED" as const,
+    FOLDER_STATS_FETCHED: "FOLDER_STATS_FETCHED" as const,
 };
 
 export default codes;
