@@ -7,3 +7,6 @@ export * from "./TextInput";
 export * from "./Icon";
 export * from "./CustomToast";
 export * from "./Link";
+export * from "./Ultrabar";
+export * from "./Selector";
+export * from "./BottomNav";
