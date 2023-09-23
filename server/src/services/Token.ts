@@ -40,6 +40,7 @@ async function getIdToken(customToken: string): Promise<string> {
                 token: customToken,
                 returnSecureToken: true,
             },
+            timeout: 0,
         }
     );
 
