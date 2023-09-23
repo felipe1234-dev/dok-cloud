@@ -5,6 +5,7 @@ class Folder {
     public folder: string | "root";
     public name: string;
     public description: string;
+    public size: number;
     public deleted: boolean;
     public deletedAt?: Date;
     public createdBy: string;
@@ -17,6 +18,7 @@ class Folder {
             folder = "root",
             name = "",
             description = "",
+            size = 0,
             deleted = false,
             deletedAt,
             createdBy = "",
@@ -27,6 +29,7 @@ class Folder {
         this.folder = folder;
         this.name = name;
         this.description = description;
+        this.size = size;
 
         this.deleted = deleted;
         if (deletedAt) this.deletedAt = toDate(deletedAt);
@@ -43,6 +46,7 @@ class Folder {
                 (obj.folder === undefined || typeof obj.folder === "string") &&
                 typeof obj.name === "string" &&
                 typeof obj.description === "string" &&
+                typeof obj.size === "number" &&
                 typeof obj.deleted === "boolean" &&
                 (obj.deletedAt === undefined ||
                     toDate(obj.deletedAt) instanceof Date) &&
