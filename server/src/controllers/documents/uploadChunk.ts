@@ -40,7 +40,7 @@ const uploadChunkController: RouteController = async (
             throw new Forbidden("You cannot change this document");
 
         if (document.loaded >= document.size)
-            throw new Forbidden("All chunks area loaded!");
+            throw new Forbidden("All chunks are loaded!");
 
         const loaded = document.loaded + buffer.length;
         if (loaded > document.size) throw new Overload();
