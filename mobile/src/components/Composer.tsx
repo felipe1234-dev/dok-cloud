@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 interface ComposerProps {
-    components: Array<Function>;
+    components: Array<(props: any) => JSX.Element>;
     children?: ReactNode;
 }
 
