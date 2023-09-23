@@ -16,7 +16,7 @@ const I18nContext = createContext<I18nValue | undefined>(undefined);
 function I18nProvider(props: { children: ReactNode }) {
     const [language, setLanguage] = useState<Language>("en_US");
 
-    const t = (text: string, replaceMatrix: ReplaceMatrix) => {
+    const t = (text: string, replaceMatrix?: ReplaceMatrix) => {
         let result = languages[language][text] || text;
 
         if (replaceMatrix) {
@@ -43,3 +43,4 @@ function useI18n() {
 
 export { I18nContext, I18nProvider, useI18n };
 export type { I18nValue, ReplaceMatrix };
+export * from "./languages";

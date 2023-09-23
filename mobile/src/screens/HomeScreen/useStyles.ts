@@ -3,30 +3,18 @@ import { useTheme } from "@providers";
 
 function useStyles() {
     const { palette } = useTheme();
-
     return StyleSheet.create({
-        stats: {
+        main: {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
             alignItems: "center",
-            gap: 8,
-            padding: 22,
-        },
-        card: {
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: 8,
-            padding: 15,
-            backgroundColor: palette.info.main,
-            borderRadius: 20,
+            gap: 15,
+            backgroundColor: palette.secondary.light,
+            height: "100%",
             width: "100%",
+            padding: "auto",
         },
-        number: {
-            
-        }
     });
 }
 

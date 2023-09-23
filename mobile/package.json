@@ -17,6 +17,8 @@
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^19.0.0",
     "@react-native-async-storage/async-storage": "1.18.2",
+    "@react-native-picker/picker": "2.4.10",
+    "@react-navigation/bottom-tabs": "^6.5.8",
     "axios": "^1.5.0",
     "dok-fortress-globals": "^1.0.8",
     "expo": "~49.0.8",
