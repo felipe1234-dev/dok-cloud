@@ -1,3 +1,5 @@
+import { ViewStyle } from "react-native";
+
 import MaterialIcon from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcon from "@expo/vector-icons/MaterialCommunityIcons";
 import FontAwesomeIcon from "@expo/vector-icons/FontAwesome";
@@ -33,6 +35,7 @@ interface IconProps {
     type: IconType;
     name: string;
     size?: number;
+    style?: ViewStyle;
 }
 
 const iconComponents = {
@@ -53,9 +56,14 @@ const iconComponents = {
 };
 
 function Icon(props: IconProps) {
-    const { type, ...rest } = props;
+    const { type, size = 16, ...rest } = props;
     const IconComponent = iconComponents[type];
-    return <IconComponent {...rest} />;
+    return (
+        <IconComponent
+            size={size}
+            {...rest}
+        />
+    );
 }
 
 export { Icon };
