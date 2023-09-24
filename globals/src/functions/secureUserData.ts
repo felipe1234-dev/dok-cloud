@@ -13,4 +13,4 @@ function secureUserData(user: User): User {
     return secureUser;
 }
 
-export default secureUserData;
+export { secureUserData };
