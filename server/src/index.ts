@@ -8,7 +8,12 @@ import {
     responseFormatterMiddleware,
     logRequestsMiddleware,
 } from "@middlewares";
-import { authRouter, usersRouter, documentsRouter } from "@routes";
+import {
+    authRouter,
+    usersRouter,
+    documentsRouter,
+    foldersRouter,
+} from "@routes";
 import { expireTokens } from "@schedules";
 
 const api = functions.runWith({
@@ -34,6 +39,7 @@ app.get("/ping", (req, res) => res.status(200).send("Ping"));
 authRouter(app);
 usersRouter(app);
 documentsRouter(app);
+foldersRouter(app);
 
 // Schedules
 export const expireTokensJob = scheduler
