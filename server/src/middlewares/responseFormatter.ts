@@ -27,23 +27,30 @@ const responseFormatterMiddleware: RouteMiddleware = (req, res, next) => {
                 console.log("data:", data);
             }
 
-            return res.status(data.status || 500).send({
+            const response = {
                 ...(data instanceof AxiosError ? data.response?.data : data),
                 success: false,
                 status: data.status || 500,
                 code: data.code || codes.INTERNAL_SERVER_ERROR,
                 message: data.message || "Unknown error",
-            });
+            };
+
+            console.log("response:", response);
+
+            return res.status(data.status || 500).send(response);
         } else {
             console.log("Finished successfully!");
-
-            return res.status(data.status).send({
+            const response = {
                 ...data,
                 success: true,
                 status: data.status,
                 code: data.code,
                 message: data.message,
-            });
+            };
+
+            console.log("response:", response);
+
+            return res.status(data.status).send(response);
         }
     };
 
