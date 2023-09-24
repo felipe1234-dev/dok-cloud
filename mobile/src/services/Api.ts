@@ -1,8 +1,10 @@
 import axios, { AxiosError } from "axios";
 import { User, Document, Folder } from "dok-fortress-globals";
 import { auth } from "./firebase";
+
 import { isLocal, JSONToURLQuery } from "@functions";
 import { Response, isResponse, Filters } from "@types";
+
 import { LocalStorage } from "./LocalStorage";
 
 const apiURL = isLocal()
@@ -40,7 +42,7 @@ const Api = {
     },
 
     auth: {
-        recoverSession: async () => {
+        async recoverSession() {
             try {
                 const refreshToken = await LocalStorage.getItem("refreshToken");
 
@@ -59,11 +61,7 @@ const Api = {
                 return undefined;
             }
         },
-        login: async (
-            email: string,
-            password: string,
-            rememberMe?: boolean
-        ) => {
+        async login(email: string, password: string, rememberMe?: boolean) {
             const { data } = await httpEndpoint.post("/auth/login", {
                 email,
                 password,
@@ -81,13 +79,13 @@ const Api = {
 
             return new User(data.user);
         },
-        logout: async () => {
+        async logout() {
             await httpEndpoint.post("/auth/logout");
             httpEndpoint.defaults.headers.common.authorization = "";
             await LocalStorage.removeItem("refreshToken");
             await auth.signOut();
         },
-        register: async (name: string, email: string, password: string) => {
+        async register(name: string, email: string, password: string) {
             await httpEndpoint.post("/auth/register", {
                 name,
                 email,
@@ -97,7 +95,11 @@ const Api = {
     },
 
     documents: {
-        async get(filters: Filters<Document> = {}) {
+        async get(uid: string) {
+            const { data } = await httpEndpoint.get(`/documents/${uid}`);
+            return new Document(data.document);
+        },
+        async list(filters: Filters<Document> = {}) {
             const { data } = await httpEndpoint.get(
                 `/documents/?${JSONToURLQuery(filters)}`
             );
@@ -107,7 +109,11 @@ const Api = {
     },
 
     folders: {
-        async get(filters: Filters<Folder> = {}) {
+        async get(uid: string) {
+            const { data } = await httpEndpoint.get(`/folders/${uid}`);
+            return new Folder(data.folder);
+        },
+        async list(filters: Filters<Folder> = {}) {
             const { data } = await httpEndpoint.get(
                 `/folders/?${JSONToURLQuery(filters)}`
             );

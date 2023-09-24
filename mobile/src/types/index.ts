@@ -6,3 +6,4 @@ export * from "./Response";
 export * from "./Filters";
 export * from "./Directory";
 export * from "./TranslationTable";
+export * from "./Tree";

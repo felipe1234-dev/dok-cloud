@@ -7,7 +7,7 @@ import {
     ToastProvider,
     NavigatorProvider,
     AuthProvider,
-    TreeProvider,
+    CloudProvider,
 } from "./src/providers";
 import Root from "./src/Root";
 
@@ -19,7 +19,7 @@ function App() {
         ToastProvider,
         NavigatorProvider,
         AuthProvider,
-        TreeProvider,
+        CloudProvider,
     ];
 
     return (
