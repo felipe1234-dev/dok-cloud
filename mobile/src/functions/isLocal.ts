@@ -1,5 +1,5 @@
 function isLocal(): boolean {
-    return window.location.href.includes("localhost");
+    return !!__DEV__;
 }
 
 export { isLocal };
