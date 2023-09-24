@@ -32,7 +32,7 @@ class FoldersDB extends DBAccess<Folder> {
             createdBy: user.uid,
         });
 
-        return this.create(trashFolder);
+        return this.uid(trashFolder.uid).create(trashFolder);
     }
 
     public createRootFolder(user: User) {
@@ -43,7 +43,7 @@ class FoldersDB extends DBAccess<Folder> {
             createdBy: user.uid,
         });
 
-        return this.create(rootFolder);
+        return this.uid(rootFolder.uid).create(rootFolder);
     }
 }
 
