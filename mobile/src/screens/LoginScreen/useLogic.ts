@@ -1,8 +1,13 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { validateEmail } from "dok-fortress-globals";
 import { useAuth, useNavigator, useToast } from "@providers";
+import { LoginScreenProps } from "./index";
 
-function useLogic() {
+interface LoginLogicParams extends LoginScreenProps {}
+
+function useLogic(params: LoginLogicParams) {
+    const { registeredANewUser = false } = params.params;
+
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -85,6 +90,14 @@ function useLogic() {
         setPassword(text);
         checkPassword(text);
     };
+
+    useEffect(() => {
+        if (!registeredANewUser) return;
+        toast.success({
+            title: "Account successfully registered",
+            description: "Now, you can login with your account",
+        });
+    }, [registeredANewUser]);
 
     const buttonDisabled =
         Object.values(errors).some((error) => !!error) || loading;

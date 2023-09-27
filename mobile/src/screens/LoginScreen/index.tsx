@@ -3,11 +3,18 @@ import { View, Text, Image } from "react-native";
 import { LOGIN_SCREEN } from "@assets/images";
 import { useI18n } from "@providers";
 import { TextInput, Button, Icon, Link } from "@components";
+import { ScreenProps } from "@types";
 
 import useStyles from "./useStyles";
 import useLogic from "./useLogic";
 
-function LoginScreen() {
+interface LoginScreenProps extends ScreenProps {
+    params: {
+        registeredANewUser?: boolean;
+    }
+}
+
+function LoginScreen(props: LoginScreenProps) {
     const { t } = useI18n();
     const {
         loading,
@@ -20,7 +27,7 @@ function LoginScreen() {
         password,
         handleTogglePasswordView,
         handleLogin,
-    } = useLogic();
+    } = useLogic(props);
     const styles = useStyles();
 
     const baseInputProps = {
@@ -105,3 +112,4 @@ function LoginScreen() {
 }
 
 export { LoginScreen };
+export type { LoginScreenProps };

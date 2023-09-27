@@ -100,11 +100,8 @@ function useLogic() {
 
             await Api.auth.register(name, email, password);
 
-            navigate("Login");
-
-            toast.success({
-                title: "Account successfully registered",
-                description: "Now, you can login with your account",
+            navigate("Login", {
+                registeredANewUser: true,
             });
         } catch (err) {
             const error = err as Error;
