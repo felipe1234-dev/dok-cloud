@@ -1,14 +1,27 @@
-import { createContext, useContext, useState, ReactNode } from "react";
-import { screenConfigs } from "@constants";
+import {
+    createContext,
+    useContext,
+    useState,
+    ReactNode,
+    Dispatch,
+    SetStateAction,
+} from "react";
+import { screens } from "@constants";
 import { ScreenConfig, ScreenParams, ScreenName } from "@types";
 import { Protected } from "@components";
 
-const indexScreen = screenConfigs.find((screen) => screen.index);
+const indexScreen = screens.find((screen) => screen.index);
 
 interface NavigatorValue {
     screenConfig?: ScreenConfig;
-    navigate: (name: ScreenName, params?: ScreenParams) => void;
+    navigate: (
+        name: ScreenName,
+        params?: ScreenParams,
+        reload?: boolean
+    ) => void;
     CurrentScreen: () => JSX.Element;
+    reload: boolean;
+    setReload: Dispatch<SetStateAction<boolean>>;
 }
 
 const NavigatorContext = createContext<NavigatorValue | undefined>(undefined);
@@ -16,10 +29,9 @@ const NavigatorContext = createContext<NavigatorValue | undefined>(undefined);
 function NavigatorProvider(props: { children: ReactNode }) {
     const [screenName, setScreenName] = useState(indexScreen?.name || "");
     const [screenParams, setScreenParams] = useState<ScreenParams>({});
+    const [reload, setReload] = useState(true);
 
-    const screenConfig = screenConfigs.find(
-        (screen) => screen.name === screenName
-    );
+    const screenConfig = screens.find((screen) => screen.name === screenName);
 
     const { component: Screen } = screenConfig || {};
 
@@ -41,14 +53,19 @@ function NavigatorProvider(props: { children: ReactNode }) {
         </Wrapper>
     );
 
-    const navigate = (name: ScreenName, params?: ScreenParams) => {
+    const navigate = (
+        name: ScreenName,
+        params?: ScreenParams,
+        reload = true
+    ) => {
         setScreenName(name);
         setScreenParams(params || {});
+        setReload(reload);
     };
 
     return (
         <NavigatorContext.Provider
-            value={{ navigate, CurrentScreen, screenConfig }}
+            value={{ navigate, CurrentScreen, screenConfig, reload, setReload }}
         >
             {props.children}
         </NavigatorContext.Provider>

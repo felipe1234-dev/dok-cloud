@@ -10,16 +10,20 @@ import useStyles from "./useStyles";
 
 function Root() {
     const [showLoader, setShowLoader] = useState(false);
-    const { screenConfig, CurrentScreen } = useNavigator();
+    const { reload, setReload, screenConfig, CurrentScreen } = useNavigator();
     const { palette } = useTheme();
     const { user } = useAuth();
     const [loaded] = useFonts(fonts);
     const styles = useStyles();
 
     useEffect(() => {
+        if (!reload) return;
         setShowLoader(true);
-        setTimeout(() => setShowLoader(false), 3000);
-    }, [screenConfig]);
+        setTimeout(() => {
+            setShowLoader(false);
+            setReload(true);
+        }, 3000);
+    }, [screenConfig, reload]);
 
     if (showLoader || !loaded) {
         return (

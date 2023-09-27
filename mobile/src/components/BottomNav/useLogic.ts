@@ -5,7 +5,7 @@ function useLogic() {
     const { screenConfig, navigate } = useNavigator();
 
     const handleNavigateToScreen = (screen: ScreenName) => () => {
-        navigate(screen);
+        navigate(screen, {}, false);
     };
 
     const currentScreen = screenConfig?.name;
