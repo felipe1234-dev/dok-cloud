@@ -1,6 +1,6 @@
 import configs from "@configs";
 import { app } from "@databases";
-import { User } from "dok-fortress-globals";
+import { User, secureUserData } from "dok-fortress-globals";
 import HTTPReq from "./HTTPReq";
 
 class Token {
@@ -13,7 +13,7 @@ class Token {
     static async encode(user: User): Promise<string> {
         const customToken = await app
             .auth()
-            .createCustomToken(user.uid, { ...user });
+            .createCustomToken(user.uid, secureUserData(user));
         const token = await getIdToken(customToken);
 
         return token;

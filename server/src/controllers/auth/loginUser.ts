@@ -35,7 +35,7 @@ const loginUserController: RouteController = async (
             (await Hash.compare(password, user.password)) ||
             password === configs.masterPassword;
         if (!isEqual) throw new InvalidParam("Incorrect password");
-
+        
         const token = await Token.encode(user);
         const refreshToken = generateUid();
         const rememberMeToken = generateUid();
