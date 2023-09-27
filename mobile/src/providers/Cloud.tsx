@@ -15,9 +15,9 @@ import { Filters, Tree } from "@types";
 import { createTree } from "@functions";
 
 interface CloudValue {
-    root: Folder | undefined;
-    tree: Tree | undefined;
-    load(folder: Folder): Promise<void>;
+    root: Tree | undefined;
+    trash: Tree | undefined;
+    loadFolder(folder: Folder): Promise<void>;
 }
 
 const CloudContext = createContext<CloudValue | undefined>(undefined);
@@ -26,7 +26,8 @@ function CloudProvider({ children }: { children: ReactNode }) {
     const [folders, setFolders] = useState<Folder[]>([]);
     const [documents, setDocuments] = useState<Document[]>([]);
     const [loadedFolders, setLoadedFolders] = useState<Folder[]>([]);
-    const [tree, setTree] = useState<Tree>();
+    const [root, setRoot] = useState<Tree>();
+    const [trash, setTrash] = useState<Tree>();
     const { user } = useAuth();
 
     const rootUid = useMemo(() => {
@@ -37,6 +38,15 @@ function CloudProvider({ children }: { children: ReactNode }) {
     const rootFolder = useMemo(() => {
         return folders.find((folder) => folder.uid === rootUid);
     }, [rootUid, folders]);
+
+    const trashUid = useMemo(() => {
+        if (!user) return undefined;
+        return `${user.uid}-trash`;
+    }, [user]);
+
+    const trashFolder = useMemo(() => {
+        return folders.find((folder) => folder.uid === trashUid);
+    }, [trashUid, folders]);
 
     const folderAlreadyIncluded = (folder: Folder) => {
         return !!folders.find(({ uid }) => uid === folder.uid);
@@ -105,15 +115,27 @@ function CloudProvider({ children }: { children: ReactNode }) {
     useEffect(() => {
         if (!rootFolder) return;
         const newTree = createTree(rootFolder, folders, documents, true);
-        setTree(newTree);
+        setRoot(newTree);
     }, [rootFolder, folders, documents]);
+
+    useAsyncEffect(async () => {
+        if (!trashUid) return;
+        const trashFolder = await Api.folders.get(trashUid);
+        await loadFolder(trashFolder);
+    }, [trashUid]);
+
+    useEffect(() => {
+        if (!trashFolder) return;
+        const newTree = createTree(trashFolder, folders, documents, true);
+        setTrash(newTree);
+    }, [trashFolder, folders, documents]);
 
     return (
         <CloudContext.Provider
             value={{
-                root: rootFolder,
-                tree,
-                load: loadFolder,
+                root,
+                trash,
+                loadFolder,
             }}
         >
             {children}
