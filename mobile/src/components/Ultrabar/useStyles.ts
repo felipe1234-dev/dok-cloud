@@ -7,7 +7,7 @@ function useStyles() {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "flex-end",
-            gap: 8,
+            gap: 5,
             backgroundColor: "transparent",
             minHeight: 50,
             minWidth: "100%",
