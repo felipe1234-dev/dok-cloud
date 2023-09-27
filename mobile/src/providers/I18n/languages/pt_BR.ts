@@ -1,6 +1,9 @@
 import { TranslationTable } from "@types";
 
 const pt_BR: TranslationTable = {
+    "pt BR": "Português BR",
+    "en US": "English US",
+
     // All
     "Broken url": "URL quebrada",
     "Unable to open this URL: $url": "Incapaz de abrir essa URL: $url",
@@ -48,6 +51,7 @@ const pt_BR: TranslationTable = {
     "Enter your password again": "Preencha a sua senha novamente",
     "Error creating a new account": "Erro ao criar nova conta",
     "Account successfully registered": "Conta criada com sucesso",
+    "Email already taken": "Email já está em uso",
     "Now, you can login with your account":
         "Agora, você pode logar com sua conta conta",
     Register: "Registrar-se",
