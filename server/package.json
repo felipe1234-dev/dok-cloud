@@ -26,7 +26,7 @@
         "bcrypt": "^5.1.0",
         "busboy": "^1.6.0",
         "cors": "^2.8.5",
-        "dok-fortress-globals": "^1.1.0",
+        "dok-fortress-globals": "^1.1.3",
         "dotenv": "^16.0.3",
         "express": "^4.18.2",
         "ffmpeg": "0.0.4",
