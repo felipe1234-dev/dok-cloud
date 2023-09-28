@@ -20,6 +20,9 @@ function useStyles() {
             minHeight: 50,
             minWidth: "100%",
             paddingHorizontal: 15,
+            borderTopColor: palette.secondary.main,
+            borderTopWidth: 1,
+            borderTopStyle: "solid",
         },
         selected: {
             color: palette.primary.light,
