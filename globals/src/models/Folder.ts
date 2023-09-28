@@ -5,6 +5,7 @@ class Folder {
     public folder: string;
     public name: string;
     public description: string;
+    public pinned: boolean;
     public deleted: boolean;
     public deletedAt?: Date;
     public createdBy: string;
@@ -17,6 +18,7 @@ class Folder {
             folder = "",
             name = "",
             description = "",
+            pinned = false,
             deleted = false,
             deletedAt,
             createdBy = "",
@@ -27,6 +29,7 @@ class Folder {
         this.folder = folder;
         this.name = name;
         this.description = description;
+        this.pinned = pinned;
 
         this.deleted = deleted;
         if (deletedAt) this.deletedAt = toDate(deletedAt);
