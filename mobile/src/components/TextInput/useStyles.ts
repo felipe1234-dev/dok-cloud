@@ -12,7 +12,9 @@ function useStyles(params: TextInputStyleParams) {
     const {
         fullWidth = false,
         placeholderTextColor = palette.text.main,
+        controlStyle = {},
         labelStyle = {},
+        containerStyle = {},
         inputStyle = {},
         focused,
         touching,
@@ -41,6 +43,7 @@ function useStyles(params: TextInputStyleParams) {
             alignItems: "flex-start",
             gap: 8,
             width: fullWidth ? "100%" : "auto",
+            ...controlStyle,
         },
         container: {
             display: "flex",
@@ -54,6 +57,7 @@ function useStyles(params: TextInputStyleParams) {
             borderStyle: "solid",
             borderColor,
             borderWidth: 1.5,
+            ...containerStyle,
         },
         label: {
             color: labelColor,

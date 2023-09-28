@@ -12,8 +12,10 @@ interface TextInputProps
         Partial<InputMaskerSettings> {
     fullWidth?: boolean;
     label?: ReactNode;
+    controlStyle?: ViewStyle;
     labelStyle?: TextStyle;
-    inputStyle?: ViewStyle;
+    containerStyle?: ViewStyle;
+    inputStyle?: TextStyle;
     onChangeText?: (text: string, maskedText?: string) => void | Promise<void>;
     left?: ReactNode;
     right?: ReactNode;
