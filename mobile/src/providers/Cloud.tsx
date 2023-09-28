@@ -18,6 +18,8 @@ interface CloudValue {
     root: Tree | undefined;
     trash: Tree | undefined;
     loadFolder(folder: Folder): Promise<void>;
+    folders: Folder[];
+    documents: Document[];
 }
 
 const CloudContext = createContext<CloudValue | undefined>(undefined);
@@ -136,6 +138,8 @@ function CloudProvider({ children }: { children: ReactNode }) {
                 root,
                 trash,
                 loadFolder,
+                folders,
+                documents,
             }}
         >
             {children}
