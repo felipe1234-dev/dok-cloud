@@ -18,11 +18,6 @@ function lighten(color: string, light: number): string {
     if (light < -1) light = -1;
     if (light > 1) light = 1;
 
-    if (color.length !== 7) {
-        const num = color.replace("#", "");
-        color = `#${num.repeat(6 / num.length).slice(0, 6)}`;
-    }
-
     let r = parseInt(color.substr(1, 2), 16);
     let g = parseInt(color.substr(3, 2), 16);
     let b = parseInt(color.substr(5, 2), 16);

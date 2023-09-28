@@ -7,12 +7,12 @@ const lightPalette: Palette = {
         dark: "#581df6",
     },
     secondary: {
-        light: "#fff",
-        main: "#0000003b",
+        light: "#ffffff",
+        main: "#dbdbda",
         dark: "#c4c4c4",
     },
     text: {
-        light: "#fff",
+        light: "#ffffff",
         main: "#dbdbda",
         dark: "#333333",
     },
@@ -34,7 +34,7 @@ const lightPalette: Palette = {
     warning: {
         light: "#56667d",
         main: "#222831",
-        dark: "#000",
+        dark: "#000000",
     },
     info: {
         light: "#8194E9",
