@@ -17,8 +17,8 @@ function useLogic() {
 
     const greetings = useMemo(() => {
         return timePeriod === "dawn"
-            ? `Hello, $name! 👋`
-            : `Good ${timePeriod}, $name! 👋`;
+            ? `Hello, $name!`
+            : `Good ${timePeriod}, $name!`;
     }, [timePeriod, user]);
 
     return {

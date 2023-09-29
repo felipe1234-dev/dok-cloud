@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 function useStyles() {
     return StyleSheet.create({
-        root: {
+        list: {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
@@ -10,31 +10,18 @@ function useStyles() {
             gap: 8,
             backgroundColor: "transparent",
             width: "100%",
-            padding: 0,
-        },
-        main: {
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "flex-start",
-            gap: 15,
-            width: "100%",
             paddingHorizontal: 25,
         },
-        greetings: {
-            textAlign: "left",
-            fontWeight: "600",
-            fontSize: 16,
-            textBreak: "break-word",
+        header: {
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            width: "100%",
         },
-        searchBarContainer: {
-            paddingLeft: 8,
-        },
-        searchBarInput: {
-            padding: 8,
-            paddingLeft: 0,
-            fontSize: 16,
-            fontWeight: "400",
+        title: {
+            fontSize: 18,
+            textAlign: "center",
         },
     });
 }

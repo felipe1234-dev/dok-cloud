@@ -1,5 +1,9 @@
 import { View } from "react-native";
+
 import { Header } from "./Header";
+import { Pinned } from "./Pinned";
+import { Recents } from "./Recents";
+
 import useStyles from "./useStyles";
 
 function HomeScreen() {
@@ -8,6 +12,8 @@ function HomeScreen() {
     return (
         <View style={styles.main}>
             <Header />
+            <Recents />
+            <Pinned />
         </View>
     );
 }

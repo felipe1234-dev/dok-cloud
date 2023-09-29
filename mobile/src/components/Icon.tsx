@@ -1,4 +1,4 @@
-import { ViewStyle } from "react-native";
+import { TextStyle } from "react-native";
 
 import MaterialIcon from "@expo/vector-icons/MaterialIcons";
 import MaterialCommunityIcon from "@expo/vector-icons/MaterialCommunityIcons";
@@ -35,7 +35,7 @@ interface IconProps {
     type: IconType;
     name: string;
     size?: number;
-    style?: ViewStyle;
+    style?: TextStyle;
 }
 
 const iconComponents = {

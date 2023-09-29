@@ -57,11 +57,18 @@ const pt_BR: TranslationTable = {
     Register: "Registrar-se",
 
     // Home screen
-    "Hello, $name! 👋": "Olá, $name! 👋",
-    "Good morning, $name! 👋": "Bom dia, $name! 👋",
-    "Good afternoon, $name! 👋": "Boa tarde, $name! 👋",
-    "Good evening, $name! 👋": "Boa noite, $name! 👋",
-    "Good night, $name! 👋": "Boa noite, $name! 👋",
+    "Hello, $name!": "Olá, $name!",
+    "Good morning, $name!": "Bom dia, $name!",
+    "Good afternoon, $name!": "Boa tarde, $name!",
+    "Good evening, $name!": "Boa noite, $name!",
+    "Good night, $name!": "Boa noite, $name!",
+    "Search folder and files": "Pesquise por pastas e arquivos",
+    "Recent files": "Arquivos recentes",
+    Pinned: "Fixadas",
+    "You don't have any recent files": "Você não tem nenhum arquivo recente",
+    "Please, click the button below to go to the file explorer":
+        "Por favor, clique no botão abaixo para ir até o seu explorador de arquivos",
+    "File explorer": "Explorador de arquivos",
 };
 
 export { pt_BR };

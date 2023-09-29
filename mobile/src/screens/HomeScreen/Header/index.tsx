@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 
 import { useI18n, useAuth } from "@providers";
-import { Ultrabar } from "@components";
+import { Ultrabar, TextInput, Icon } from "@components";
 
 import useStyles from "./useStyles";
 import useLogic from "./useLogic";
@@ -13,7 +13,6 @@ function Header() {
     const styles = useStyles();
 
     if (!user) return <></>;
-
     const { name } = user;
 
     return (
@@ -23,6 +22,18 @@ function Header() {
                 <Text style={styles.greetings}>
                     {t(greetings, { $name: name })}
                 </Text>
+                <TextInput
+                    fullWidth
+                    containerStyle={styles.searchBarContainer}
+                    inputStyle={styles.searchBarInput}
+                    placeholder={t("Search folder and files")}
+                    left={
+                        <Icon
+                            type="feather"
+                            name="search"
+                        />
+                    }
+                />
             </View>
         </View>
     );
