@@ -83,6 +83,7 @@ class User {
         this.language = language;
         this.salt = salt;
         this.password = password;
+        usage.updatedAt = toDate(usage.updatedAt);
         this.usage = usage;
 
         this.deleted = deleted;
