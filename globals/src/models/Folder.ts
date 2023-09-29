@@ -47,6 +47,7 @@ class Folder {
                 typeof obj.name === "string" &&
                 typeof obj.description === "string" &&
                 typeof obj.deleted === "boolean" &&
+                typeof obj.pinned === "boolean" &&
                 (obj.deletedAt === undefined ||
                     toDate(obj.deletedAt) instanceof Date) &&
                 typeof obj.createdBy === "string" &&
