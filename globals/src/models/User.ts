@@ -1,4 +1,5 @@
 import { generateUid, toDate } from "../functions";
+import { GB } from "../constants";
 
 class User {
     public uid: string;
@@ -9,6 +10,22 @@ class User {
     public language: string;
     public salt: string;
     public password: string;
+    public usage: {
+        plan: {
+            uid: string;
+            name: string;
+            description: string;
+        };
+        storage: {
+            used: number;
+            amount: number;
+        };
+        bandwidth: {
+            used: number;
+            amount: number;
+        };
+        updatedAt: Date;
+    };
     public deleted: boolean;
     public deletedAt?: Date;
     public online: boolean;
@@ -30,6 +47,22 @@ class User {
             language = "",
             salt = "",
             password = "",
+            usage = {
+                plan: {
+                    uid: "free-plan",
+                    name: "Free plan",
+                    description: "Free plan",
+                },
+                storage: {
+                    used: 0,
+                    amount: 5 * GB,
+                },
+                bandwidth: {
+                    used: 0,
+                    amount: 1 * GB,
+                },
+                updatedAt: new Date(),
+            },
             deleted = false,
             deletedAt,
             online = false,
@@ -50,6 +83,7 @@ class User {
         this.language = language;
         this.salt = salt;
         this.password = password;
+        this.usage = usage;
 
         this.deleted = deleted;
         if (deletedAt) this.deletedAt = toDate(deletedAt);
@@ -79,6 +113,15 @@ class User {
                 typeof obj.password === "string" &&
                 toDate(obj.createdAt) instanceof Date &&
                 typeof obj.online === "boolean" &&
+                obj.usage instanceof Object &&
+                obj.usage.plan instanceof Object &&
+                obj.usage.storage instanceof Object &&
+                typeof obj.usage.storage.used === "number" &&
+                typeof obj.usage.storage.amount === "number" &&
+                obj.usage.bandwidth instanceof Object &&
+                typeof obj.usage.bandwidth.used === "number" &&
+                typeof obj.usage.bandwidth.amount === "number" &&
+                toDate(obj.usage.updatedAt) instanceof Date &&
                 (obj.sessionStart === undefined ||
                     toDate(obj.sessionStart) instanceof Date) &&
                 (obj.sessionEnd === undefined ||
