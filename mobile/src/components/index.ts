@@ -10,3 +10,4 @@ export * from "./Link";
 export * from "./Ultrabar";
 export * from "./Selector";
 export * from "./BottomNav";
+export * from "./CircularProgress";
