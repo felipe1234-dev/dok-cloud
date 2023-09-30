@@ -14,7 +14,7 @@ import {
     documentsRouter,
     foldersRouter,
 } from "@routes";
-import { expireTokens } from "@schedules";
+import { expireTokens, bandwidthMonthlyReset } from "@schedules";
 
 const api = functions.runWith({
     timeoutSeconds: 540,
@@ -45,5 +45,8 @@ foldersRouter(app);
 export const expireTokensJob = scheduler
     .schedule("every 1 hour")
     .onRun(expireTokens);
+export const bandwidthMonthlyResetJob = scheduler
+    .schedule("0 0 1 * *")
+    .onRun(bandwidthMonthlyReset);
 
 export default https.onRequest(app);
