@@ -35,7 +35,7 @@ function AuthProvider(props: { children: React.ReactNode }) {
     };
 
     useEffect(() => {
-        Api.httpEndpoint.interceptors.response.use(
+        Api.endpoint.interceptors.response.use(
             (response) => {
                 return response;
             },
@@ -48,6 +48,11 @@ function AuthProvider(props: { children: React.ReactNode }) {
         loader.show();
         Api.auth.recoverSession().then(setUser).finally(loader.hide);
     }, []);
+
+    useEffect(() => {
+        if (!user?.uid) return;
+        Api.users.watch(user.uid).onUpdate(setUser);
+    }, [user?.uid]);
 
     return (
         <AuthContext.Provider

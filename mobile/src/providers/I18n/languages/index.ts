@@ -8,6 +8,12 @@ const languages = {
 
 type Language = keyof typeof languages;
 
-export { languages };
+const languageList = Object.keys(languages) as Language[];
+
+function isLanguage(value: any): value is Language {
+    return languageList.includes(value);
+}
+
+export { languages, languageList, isLanguage };
 export type { Language };
 export default languages;

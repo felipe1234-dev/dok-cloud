@@ -1,5 +1,14 @@
-import { createContext, useContext, useState, ReactNode } from "react";
-import languages, { Language } from "./languages";
+import {
+    createContext,
+    useContext,
+    useState,
+    useEffect,
+    ReactNode,
+} from "react";
+import languages, { Language, isLanguage } from "./languages";
+import { useAsyncEffect } from "@hooks";
+import { useAuth } from "../Auth";
+import { Api } from "@services";
 
 interface ReplaceMatrix {
     [key: string]: string;
@@ -15,6 +24,7 @@ const I18nContext = createContext<I18nValue | undefined>(undefined);
 
 function I18nProvider(props: { children: ReactNode }) {
     const [language, setLanguage] = useState<Language>("en_US");
+    const { user } = useAuth();
 
     const t = (text: string, replaceMatrix?: ReplaceMatrix) => {
         let result = languages[language][text] || text;
@@ -27,6 +37,17 @@ function I18nProvider(props: { children: ReactNode }) {
 
         return result;
     };
+
+    useEffect(() => {
+        if (!user?.uid) return;
+        if (isLanguage(user.language)) setLanguage(user.language);
+    }, [user?.uid]);
+
+    useAsyncEffect(async () => {
+        if (!user?.uid) return;
+        if (user.language !== language)
+            await Api.users.update(user.uid, { language });
+    }, [language, user?.language, user?.uid]);
 
     return (
         <I18nContext.Provider value={{ language, setLanguage, t }}>

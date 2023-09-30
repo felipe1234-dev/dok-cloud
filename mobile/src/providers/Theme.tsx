@@ -1,6 +1,17 @@
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+    createContext,
+    useContext,
+    useState,
+    ReactNode,
+    useEffect,
+} from "react";
+
 import { darkPalette, lightPalette } from "@constants";
 import { Palette } from "@types";
+import { Api } from "@services";
+import { useAsyncEffect } from "@hooks";
+
+import { useAuth } from "./Auth";
 
 const palettes = {
     dark: darkPalette,
@@ -18,12 +29,29 @@ interface ThemeValue {
 const ThemeContext = createContext<ThemeValue | undefined>(undefined);
 
 function ThemeProvider(props: { children: ReactNode }) {
-    const [lightTheme, setLightTheme] = useState(true);
-
-    const theme = lightTheme ? "light" : "dark";
+    const [theme, setTheme] = useState<Theme>("light");
+    const { user } = useAuth();
     const palette = palettes[theme];
 
-    const toggleTheme = () => setLightTheme((prev) => !prev);
+    const toggleTheme = () => {
+        setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    };
+
+    useEffect(() => {
+        if (!user?.uid) return;
+
+        const isTheme = ["light", "dark"].includes(user.theme);
+        const changed = user.theme !== theme;
+
+        if (changed && isTheme) {
+            setTheme(user.theme as Theme);
+        }
+    }, [user?.uid, user?.theme]);
+
+    useAsyncEffect(async () => {
+        if (!user?.uid) return;
+        if (user.theme !== theme) await Api.users.update(user.uid, { theme });
+    }, [theme, user?.uid, user?.theme]);
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme, palette }}>
