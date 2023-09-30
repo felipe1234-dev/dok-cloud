@@ -4,7 +4,7 @@ import { authenticationMiddleware } from "@middlewares";
 import {
     createFolderController,
     searchFoldersController,
-    getFolderController,
+    findFolderController,
     updateFolderController,
     getFolderStatsController,
 } from "@controllers/folders";
@@ -24,7 +24,7 @@ const foldersRouter: HTTPRouter = (api) => {
     api.get(
         "/folders/:folderUid",
         useRouteMiddleware(authenticationMiddleware),
-        useRouteController(getFolderController)
+        useRouteController(findFolderController)
     );
     api.patch(
         "/folders/:folderUid",

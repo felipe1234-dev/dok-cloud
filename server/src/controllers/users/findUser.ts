@@ -8,7 +8,7 @@ import {
     Unauthenticated,
 } from "@errors";
 
-const getUserByUidController: RouteController = async (
+const findUserController: RouteController = async (
     req: Request & {
         params: {
             userUid?: string;
@@ -39,4 +39,4 @@ const getUserByUidController: RouteController = async (
     }
 };
 
-export { getUserByUidController };
+export { findUserController };

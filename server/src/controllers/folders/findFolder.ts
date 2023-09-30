@@ -8,7 +8,7 @@ import {
     Unauthenticated,
 } from "@errors";
 
-const getFolderController: RouteController = async (
+const findFolderController: RouteController = async (
     req: Request & {
         params: {
             folderUid?: string;
@@ -39,4 +39,4 @@ const getFolderController: RouteController = async (
     }
 };
 
-export { getFolderController };
+export { findFolderController };

@@ -1,4 +1,4 @@
 export * from "./searchDocuments";
 export * from "./uploadDocument";
 export * from "./uploadChunk";
-export * from "./getDocument";
+export * from "./findDocument";

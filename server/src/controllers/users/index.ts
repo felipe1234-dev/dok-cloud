@@ -1,2 +1,2 @@
-export * from "./getUserByUid";
+export * from "./findUser";
 export * from "./updateUser";

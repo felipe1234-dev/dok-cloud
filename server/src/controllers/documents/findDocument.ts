@@ -8,7 +8,7 @@ import {
     Unauthenticated,
 } from "@errors";
 
-const getDocumentController: RouteController = async (
+const findDocumentController: RouteController = async (
     req: Request & {
         params: {
             documentUid?: string;
@@ -39,4 +39,4 @@ const getDocumentController: RouteController = async (
     }
 };
 
-export { getDocumentController };
+export { findDocumentController };
