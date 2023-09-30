@@ -31,4 +31,19 @@ firestore.settings({ ignoreUndefinedProperties: true });
 const auth = app.auth();
 auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
-export { firestore, storage, auth };
+const userCollection = firestore.collection("users");
+const folderCollection = firestore.collection("folders");
+const chunkCollection = firestore.collection("chunks");
+const documentCollection = firestore.collection("documents");
+const planCollection = firestore.collection("plans");
+
+export {
+    firestore,
+    storage,
+    auth,
+    userCollection,
+    folderCollection,
+    chunkCollection,
+    documentCollection,
+    planCollection,
+};

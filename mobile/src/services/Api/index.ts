@@ -1,44 +1,19 @@
-import axios, { AxiosError } from "axios";
-import { User, Document, Folder } from "dok-fortress-globals";
-import { auth } from "./firebase";
+import { User, Document, Folder, secureUserData } from "dok-fortress-globals";
 
-import { isLocal, JSONToURLQuery } from "@functions";
-import { Response, isResponse, Filters } from "@types";
+import { JSONToURLQuery } from "@functions";
+import { Filters } from "@types";
 
-import { LocalStorage } from "./LocalStorage";
+import { LocalStorage } from "../LocalStorage";
+import { auth, userCollection } from "../firebase";
 
-const apiURL = isLocal()
-    ? "http://127.0.0.1:5001/dokcloud-95c82/us-central1/default"
-    : "";
-
-const httpEndpoint = axios.create({
-    baseURL: apiURL,
-    timeout: 0,
-});
-
-httpEndpoint.interceptors.response.use(
-    (response) => response,
-    (error: AxiosError) => {
-        const responseData = error.response?.data;
-
-        if (isResponse(responseData)) {
-            const responseError: Response = {
-                ...error,
-                ...responseData,
-            };
-
-            return Promise.reject(responseError);
-        } else {
-            return Promise.reject(error);
-        }
-    }
-);
+import endpoint from "./endpoint";
+import { createDocumentListener } from "./utils";
 
 const Api = {
-    httpEndpoint,
+    endpoint,
 
     async ping() {
-        await httpEndpoint.get("/ping");
+        await endpoint.get("/ping");
     },
 
     auth: {
@@ -46,12 +21,12 @@ const Api = {
             try {
                 const refreshToken = await LocalStorage.getItem("refreshToken");
 
-                const { data } = await httpEndpoint.post("/auth/session", {
+                const { data } = await endpoint.post("/auth/session", {
                     refreshToken,
                 });
 
                 const user = new User(data.user);
-                httpEndpoint.defaults.headers.common.authorization = data.token;
+                endpoint.defaults.headers.common.authorization = data.token;
                 await auth.signInAnonymously();
 
                 return user;
@@ -62,7 +37,7 @@ const Api = {
             }
         },
         async login(email: string, password: string, rememberMe?: boolean) {
-            const { data } = await httpEndpoint.post("/auth/login", {
+            const { data } = await endpoint.post("/auth/login", {
                 email,
                 password,
                 rememberMe,
@@ -72,7 +47,7 @@ const Api = {
             const refreshToken: string = data.refreshToken;
             const rememberMeToken: string = data.rememberMeToken;
 
-            httpEndpoint.defaults.headers.common.authorization = token;
+            endpoint.defaults.headers.common.authorization = token;
             await LocalStorage.setItem("refreshToken", refreshToken);
             await LocalStorage.setItem("rememberMeToken", rememberMeToken);
             await auth.signInAnonymously();
@@ -80,13 +55,13 @@ const Api = {
             return new User(data.user);
         },
         async logout() {
-            await httpEndpoint.post("/auth/logout");
-            httpEndpoint.defaults.headers.common.authorization = "";
+            await endpoint.post("/auth/logout");
+            endpoint.defaults.headers.common.authorization = "";
             await LocalStorage.removeItem("refreshToken");
             await auth.signOut();
         },
         async register(name: string, email: string, password: string) {
-            await httpEndpoint.post("/auth/register", {
+            await endpoint.post("/auth/register", {
                 name,
                 email,
                 password,
@@ -96,11 +71,11 @@ const Api = {
 
     documents: {
         async get(uid: string) {
-            const { data } = await httpEndpoint.get(`/documents/${uid}`);
+            const { data } = await endpoint.get(`/documents/${uid}`);
             return new Document(data.document);
         },
         async list(filters: Filters<Document> = {}) {
-            const { data } = await httpEndpoint.get(
+            const { data } = await endpoint.get(
                 `/documents/?${JSONToURLQuery(filters)}`
             );
 
@@ -110,15 +85,42 @@ const Api = {
 
     folders: {
         async get(uid: string) {
-            const { data } = await httpEndpoint.get(`/folders/${uid}`);
+            const { data } = await endpoint.get(`/folders/${uid}`);
             return new Folder(data.folder);
         },
         async list(filters: Filters<Folder> = {}) {
-            const { data } = await httpEndpoint.get(
+            const { data } = await endpoint.get(
                 `/folders/?${JSONToURLQuery(filters)}`
             );
 
             return (data.folders as any[]).map((data) => new Folder(data));
+        },
+    },
+
+    users: {
+        async get(uid: string) {
+            const { data } = await endpoint.get(`/users/${uid}`);
+            return new User(data.user);
+        },
+        async update(uid: string, updates: Partial<User>) {
+            await endpoint.put(`/users/${uid}`, updates);
+        },
+        watch(uid: string) {
+            return {
+                onUpdate(callback: (user: User) => void, runOnInit = false) {
+                    return userCollection.doc(uid).onSnapshot(
+                        createDocumentListener(runOnInit, (snapshot) => {
+                            if (!snapshot.exists)
+                                throw new Error("User not found");
+
+                            const user = secureUserData(
+                                new User(snapshot.data())
+                            );
+                            callback(user);
+                        })
+                    );
+                },
+            };
         },
     },
 };
