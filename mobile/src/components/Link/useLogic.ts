@@ -7,7 +7,15 @@ import { LinkProps } from "./index";
 interface LinkLogicParams extends LinkProps {}
 
 function useLogic(params: LinkLogicParams) {
-    const { url, to, onTouchStart, onTouchEnd, onPress } = params;
+    const {
+        url,
+        to,
+        reload,
+        screenProps = {},
+        onTouchStart,
+        onTouchEnd,
+        onPress,
+    } = params;
     const [touching, setTouching] = useState(false);
 
     const { navigate } = useNavigator();
@@ -25,7 +33,7 @@ function useLogic(params: LinkLogicParams) {
 
     const handleOnPress: LinkProps["onPress"] = async (evt) => {
         if (to) {
-            navigate(to);
+            navigate(to, screenProps, reload);
         } else if (url) {
             const supported = await Linking.canOpenURL(url);
 

@@ -11,6 +11,8 @@ interface LinkProps extends TextProps, ViewProps {
     tone?: ColorTone;
     url?: string;
     to?: ScreenName;
+    screenProps?: { [key: string]: any };
+    reload?: boolean;
     style?: TextStyle;
 }
 
