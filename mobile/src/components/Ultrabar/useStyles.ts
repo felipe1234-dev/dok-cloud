@@ -12,6 +12,7 @@ function useStyles() {
             minHeight: 50,
             minWidth: "100%",
             paddingHorizontal: 15,
+            paddingVertical: 20,
         },
         langSelector: {
             borderWidth: 0,
