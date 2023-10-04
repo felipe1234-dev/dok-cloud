@@ -12,7 +12,7 @@ function useInterval(
     const delay = useMemo(() => {
         if (cronExpression === null) return null;
 
-        const amount = Number(cronExpression.replace(/\w+/g, ""));
+        const amount = Number(cronExpression.replace(/[a-zA-Z]+/g, ""));
         const timeUnit = cronExpression.replace(String(amount), "");
 
         const ms = 1;
