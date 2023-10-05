@@ -70,13 +70,13 @@ function useStyles(params: TextInputStyleParams) {
         },
         input: {
             backgroundColor: "transparent",
-            width: "100%",
             outline: "none",
             outlineStyle: "none",
             padding: 16,
             color: palette.text.dark,
             placeholderTextColor,
             fontSize,
+            flex: 1,
             ...inputStyle,
         },
     });
