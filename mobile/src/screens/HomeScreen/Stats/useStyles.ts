@@ -4,15 +4,20 @@ import { useTheme } from "@providers";
 function useStyles() {
     const { palette } = useTheme();
     return StyleSheet.create({
-        main: {
+        container: {
             display: "flex",
             flexDirection: "column",
-            justifyContent: "flex-start",
+            justifyContent: "center",
             alignItems: "center",
             gap: 15,
-            backgroundColor: palette.secondary.light,
+            backgroundColor: "transparent",
             width: "100%",
-            height: "100%",
+            padding: 15,
+        },
+        pizza: {
+            tintColor: palette.primary.main,
+            thickness: 10,
+            backgroundColor: palette.secondary.main,
         },
     });
 }
