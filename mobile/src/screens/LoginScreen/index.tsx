@@ -11,7 +11,7 @@ import useLogic from "./useLogic";
 interface LoginScreenProps extends ScreenProps {
     params: {
         registeredANewUser?: boolean;
-    }
+    };
 }
 
 function LoginScreen(props: LoginScreenProps) {
@@ -98,7 +98,7 @@ function LoginScreen(props: LoginScreenProps) {
                     onPress={handleLogin}
                     loading={loading}
                 >
-                    {t("Login")}
+                    <Text style={styles.loginText}>{t("Login")}</Text>
                 </Button>
                 <Link
                     to="Register"

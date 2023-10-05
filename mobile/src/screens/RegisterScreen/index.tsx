@@ -115,7 +115,7 @@ function RegisterScreen() {
                     onPress={handleRegister}
                     loading={loading}
                 >
-                    {t("Register")}
+                    <Text style={styles.registerText}>{t("Register")}</Text>
                 </Button>
                 <Link
                     to="Login"

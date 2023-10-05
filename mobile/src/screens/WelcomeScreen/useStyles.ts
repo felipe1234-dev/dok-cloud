@@ -18,12 +18,11 @@ function useStyles() {
         main: {
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",
+            justifyContent: "center",
             alignItems: "center",
+            flex: 1,
             gap: 15,
             backgroundColor,
-            height: "100%",
-            width: "100%",
             paddingVertical: 40,
         },
         header: {

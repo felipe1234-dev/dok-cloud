@@ -20,9 +20,9 @@ function useStyles() {
             justifyContent: "center",
             alignItems: "center",
             gap: 15,
-            backgroundColor: bgColor,
             height: "100%",
             width: "100%",
+            backgroundColor: bgColor,
             padding: "auto",
         },
         image: {
@@ -75,6 +75,9 @@ function useStyles() {
             borderRadius: 5,
             fontWeight: "600",
             padding: 10,
+        },
+        loginText: {
+            color: palette.secondary.light,
         },
         register: {
             textAlign: "center",

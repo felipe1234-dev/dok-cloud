@@ -6,14 +6,19 @@ function useStyles() {
 
     return StyleSheet.create({
         main: {
+            position: "relative",
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
             alignItems: "center",
             gap: 15,
             backgroundColor: palette.secondary.light,
-            height: "100%",
-            width: "100%",
+        },
+        upload: {
+            position: "absolute",
+            bottom: 80,
+            right: 0,
+            color: palette.text.light,
         },
     });
 }
