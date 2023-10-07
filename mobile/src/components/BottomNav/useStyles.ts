@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Platform, StyleSheet } from "react-native";
 import { useTheme } from "@providers";
 
 function useStyles() {
@@ -6,7 +6,8 @@ function useStyles() {
 
     return StyleSheet.create({
         nav: {
-            position: "absolute",
+            // @ts-ignore
+            position: Platform.OS === "web" ? "fixed" : "absolute",
             bottom: 0,
             left: 0,
             overflowX: "scroll",
