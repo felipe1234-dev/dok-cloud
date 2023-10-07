@@ -69,6 +69,7 @@ const pt_BR: TranslationTable = {
     "Please, click the button below to go to the file explorer":
         "Por favor, clique no botão abaixo para ir até o seu explorador de arquivos",
     "File explorer": "Explorador de arquivos",
+    used: "usado",
 };
 
 export { pt_BR };
