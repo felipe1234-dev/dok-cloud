@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { SafeAreaView } from "react-native";
+import { SafeAreaView, ScrollView } from "react-native";
 import { useFonts } from "expo-font";
 
 import { ScreenLoader, CustomToast, BottomNav } from "@components";
@@ -37,7 +37,9 @@ function Root() {
 
     return (
         <SafeAreaView style={styles.root}>
-            <CurrentScreen />
+            <ScrollView contentContainerStyle={styles.screen}>
+                <CurrentScreen />
+            </ScrollView>
             <CustomToast />
             {!!user && <BottomNav />}
         </SafeAreaView>

@@ -1,26 +1,25 @@
-import { useTheme } from "@providers";
+import { useAuth, useTheme } from "@providers";
 import { StyleSheet } from "react-native";
 
 function useStyles() {
     const { palette } = useTheme();
+    const { user } = useAuth();
+    const loggedIn = !!user;
 
     return StyleSheet.create({
         root: {
             display: "flex",
             flexDirection: "column",
             justifyContent: "flex-start",
-            height: "100%",
             width: "100%",
+            height: "100%",
             backgroundColor: palette.primary.main,
             fontFamily: "Mulish-Regular",
         },
-        nav: {
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
+        screen: {
             width: "100%",
-            minHeight: 16,
-            padding: 10,
+            height: "100%",
+            paddingBottom: loggedIn ? 40 : 0,
         },
     });
 }
