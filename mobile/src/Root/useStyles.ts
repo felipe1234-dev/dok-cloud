@@ -1,5 +1,6 @@
-import { useAuth, useTheme } from "@providers";
 import { StyleSheet } from "react-native";
+import { useAuth, useTheme } from "@providers";
+import { BOTTOM_NAV_HEIGHT } from "@components";
 
 function useStyles() {
     const { palette } = useTheme();
@@ -19,7 +20,7 @@ function useStyles() {
         screen: {
             width: "100%",
             height: "100%",
-            paddingBottom: loggedIn ? 40 : 0,
+            paddingBottom: loggedIn ? BOTTOM_NAV_HEIGHT : 0,
         },
     });
 }

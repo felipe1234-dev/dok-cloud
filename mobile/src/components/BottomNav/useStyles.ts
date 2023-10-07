@@ -1,5 +1,6 @@
 import { Platform, StyleSheet } from "react-native";
 import { useTheme } from "@providers";
+import { BOTTOM_NAV_HEIGHT } from "./index";
 
 function useStyles() {
     const { palette } = useTheme();
@@ -18,7 +19,7 @@ function useStyles() {
             justifyContent: "center",
             gap: 8,
             backgroundColor: palette.secondary.light,
-            minHeight: 50,
+            minHeight: BOTTOM_NAV_HEIGHT,
             minWidth: "100%",
             paddingHorizontal: 15,
             borderTopColor: palette.secondary.main,

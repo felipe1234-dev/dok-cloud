@@ -9,6 +9,8 @@ import { Icon } from "../Icon";
 import useStyles from "./useStyles";
 import useLogic from "./useLogic";
 
+const BOTTOM_NAV_HEIGHT = 50;
+
 function BottomNav() {
     const { currentScreen, handleNavigateToScreen } = useLogic();
     const styles = useStyles();
@@ -42,4 +44,4 @@ function BottomNav() {
     );
 }
 
-export { BottomNav };
+export { BottomNav, BOTTOM_NAV_HEIGHT };
