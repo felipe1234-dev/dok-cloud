@@ -32,8 +32,8 @@ function useStyles() {
             fontWeight: "400",
         },
         image: {
-            width: 60,
-            height: 60,
+            width: 120,
+            height: 120,
         },
         empty: {
             display: "flex",
@@ -41,7 +41,7 @@ function useStyles() {
             alignItems: "center",
             justifyContent: "center",
             gap: 8,
-            marginVertical: 10,
+            marginVertical: 25,
         },
         fileExplorerButton: {
             marginTop: 15,

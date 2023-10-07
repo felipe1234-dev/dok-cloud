@@ -2,7 +2,7 @@ import { View, Text, Image } from "react-native";
 
 import { useI18n } from "@providers";
 import { EMPTY_BOX } from "@assets/images";
-import { Button, Icon } from "@components";
+import { Link } from "@components";
 
 import useStyles from "./useStyles";
 import useLogic from "./useLogic";
@@ -31,19 +31,15 @@ function Recents() {
                             "Please, click the button below to go to the file explorer"
                         )}
                     </Text>
-                    <Button
+                    <Link
                         variant="primary"
                         tone="main"
-                        onPress={handleGoToFileExplorer}
+                        to="Cloud"
+                        reload={false}
                         style={styles.fileExplorerButton}
                     >
                         {t("File explorer")}
-                        <Icon
-                            type="material-community"
-                            name="folder-multiple-outline"
-                            style={styles.fileExplorerIcon}
-                        />
-                    </Button>
+                    </Link>
                 </View>
             ) : (
                 <></>
