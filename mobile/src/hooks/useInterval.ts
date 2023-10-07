@@ -1,11 +1,14 @@
 import { useRef, useEffect, useMemo } from "react";
 
+type IntervalID = string | number | NodeJS.Timeout | undefined;
+
 function useInterval(
-    callback: (id: NodeJS.Timeout) => void | Promise<void>,
+    callback: (id: IntervalID) => void | Promise<void>,
     cronExpression: `${number}${"h" | "m" | "s" | "ms"}` | null,
-    triggers: any[] = []
+    triggers: any[] = [],
+    runOnInit = false
 ) {
-    const savedCallback = useRef((id: NodeJS.Timeout) => {
+    const savedCallback = useRef((id: IntervalID) => {
         clearInterval(id);
     });
 
@@ -36,12 +39,16 @@ function useInterval(
             return;
         }
 
+        if (runOnInit) {
+            savedCallback.current(undefined);
+        }
+
         const id = setInterval(() => {
             savedCallback.current(id);
         }, delay);
 
         return () => clearInterval(id);
-    }, [delay, ...triggers]);
+    }, [delay, runOnInit, ...triggers]);
 }
 
 export { useInterval };

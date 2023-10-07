@@ -6,14 +6,19 @@ function useLogic() {
     const [timePeriod, setTimePeriod] = useState("");
     const { user } = useAuth();
 
-    useInterval(() => {
-        const hours = new Date().getHours();
-        if (hours < 5) return setTimePeriod("night");
-        if (hours >= 5 && hours < 12) return setTimePeriod("morning");
-        if (hours <= 17) return setTimePeriod("afternoon");
-        if (hours <= 22) return setTimePeriod("evening");
-        if (hours === 23) return setTimePeriod("night");
-    }, "1m");
+    useInterval(
+        () => {
+            const hours = new Date().getHours();
+            if (hours < 5) return setTimePeriod("night");
+            if (hours >= 5 && hours < 12) return setTimePeriod("morning");
+            if (hours <= 17) return setTimePeriod("afternoon");
+            if (hours <= 22) return setTimePeriod("evening");
+            if (hours === 23) return setTimePeriod("night");
+        },
+        "1m",
+        [],
+        true
+    );
 
     const greetings = useMemo(() => {
         return timePeriod === "dawn"
