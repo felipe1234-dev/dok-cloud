@@ -8,6 +8,7 @@ import {
     ThemeProvider,
     NavigatorProvider,
     CloudProvider,
+    CloudExplorerProvider,
 } from "./src/providers";
 import Root from "./src/Root";
 
@@ -20,6 +21,7 @@ function App() {
         ThemeProvider,
         NavigatorProvider,
         CloudProvider,
+        CloudExplorerProvider,
     ];
 
     return (

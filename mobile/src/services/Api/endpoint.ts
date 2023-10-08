@@ -20,7 +20,7 @@ function isAPIResponse(obj: any): obj is APIResponse {
 }
 
 const apiURL = isLocal()
-    ? "http://127.0.0.1:5001/dokcloud-95c82/us-central1/default"
+    ? "http://localhost:5001/dokcloud-95c82/us-central1/default"
     : "";
 
 const httpEndpoint = axios.create({

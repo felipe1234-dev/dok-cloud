@@ -108,6 +108,19 @@ function CloudProvider({ children }: { children: ReactNode }) {
         addDocuments(...childDocuments);
     };
 
+    const onUploadDocument = (document: Document) => {
+        addDocument(document);
+    };
+
+    const onUpdateDocument = (document: Document) => {
+        setDocuments((prev) =>
+            prev.map((d) => {
+                if (d.uid === document.uid) return document;
+                return d;
+            })
+        );
+    };
+
     useAsyncEffect(async () => {
         if (!rootUid) return;
         const rootFolder = await Api.folders.get(rootUid);
@@ -131,6 +144,12 @@ function CloudProvider({ children }: { children: ReactNode }) {
         const newTree = createTree(trashFolder, folders, documents, true);
         setTrash(newTree);
     }, [trashFolder, folders, documents]);
+
+    useEffect(() => {
+        if (!user?.uid) return;
+        Api.documents.watch(user).onUpload(onUploadDocument);
+        Api.documents.watch(user).onUpdate(onUpdateDocument);
+    }, [user?.uid]);
 
     return (
         <CloudContext.Provider

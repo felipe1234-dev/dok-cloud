@@ -1,13 +1,19 @@
-import { User, Document, Folder, secureUserData } from "dok-fortress-globals";
+import { User, Document, Folder } from "dok-fortress-globals";
+import { secureUserData, getChunks } from "dok-fortress-globals";
+import { MAX_CHUNK_SIZE, INTEGER_SIZE } from "dok-fortress-globals";
 
 import { JSONToURLQuery } from "@functions";
-import { Filters } from "@types";
+import { Filters, LocalFile } from "@types";
 
 import { LocalStorage } from "../LocalStorage";
-import { auth, userCollection } from "../firebase";
+import { auth, documentCollection, userCollection } from "../firebase";
 
 import endpoint from "./endpoint";
-import { createDocumentListener } from "./utils";
+import {
+    createDocumentListener,
+    createQueryListener,
+    filterByChangeType,
+} from "./utils";
 
 const Api = {
     endpoint,
@@ -81,6 +87,111 @@ const Api = {
 
             return (data.documents as any[]).map((data) => new Document(data));
         },
+        async upload(localFile: LocalFile, folder: Folder): Promise<Document> {
+            const { data } = await endpoint.post("/documents", {
+                filename: localFile.name,
+                folder: folder.uid,
+                size: localFile.size,
+            });
+
+            const document = new Document(data.document);
+            if (localFile.buffer)
+                await Api.chunks.upload(document.uid, localFile.buffer);
+
+            return document;
+        },
+        watch: (user: User) => ({
+            onUpload(
+                callback: (document: Document) => void,
+                runOnInit = false
+            ) {
+                return documentCollection
+                    .where("createdBy", "==", user.uid)
+                    .onSnapshot(
+                        createQueryListener(runOnInit, (snapshot) => {
+                            const changes = filterByChangeType(
+                                "added",
+                                snapshot
+                            );
+                            for (const change of changes) {
+                                const { doc } = change;
+                                if (!doc.exists)
+                                    throw new Error("Document not found");
+
+                                const document = new Document(doc.data());
+                                callback(document);
+                            }
+                        })
+                    );
+            },
+            onUpdate(
+                callback: (document: Document) => void,
+                runOnInit = false
+            ) {
+                return documentCollection
+                    .where("createdBy", "==", user.uid)
+                    .onSnapshot(
+                        createQueryListener(runOnInit, (snapshot) => {
+                            const changes = filterByChangeType(
+                                "modified",
+                                snapshot
+                            );
+
+                            for (const change of changes) {
+                                const { doc } = change;
+                                if (!doc.exists)
+                                    throw new Error("Document not found");
+
+                                const document = new Document(doc.data());
+                                callback(document);
+                            }
+                        })
+                    );
+            },
+        }),
+    },
+
+    chunks: {
+        async upload(documentUid: string, buffer: ArrayBuffer) {
+            const typedArray = new Uint8Array(buffer);
+            const arrayOfNumbers = Array.from(typedArray);
+
+            const chunks = getChunks(
+                arrayOfNumbers,
+                MAX_CHUNK_SIZE / INTEGER_SIZE
+            );
+
+            console.log("arrayOfNumbers", arrayOfNumbers);
+            console.log("chunks", chunks);
+            console.log("MAX_CHUNK_SIZE", MAX_CHUNK_SIZE);
+            console.log("INTEGER_SIZE", INTEGER_SIZE);  
+
+            const promises: Promise<void>[] = [];
+            for (let i = 0; i < chunks.length; i++) {
+                const chunk = chunks[i];
+                console.log("i", i);
+                console.log("chunk", chunk);
+
+                const promise = new Promise<void>(async (resolve, reject) => {
+                    try {
+                        await endpoint.post(
+                            `/documents/${documentUid}/chunks`,
+                            {
+                                index: i,
+                                buffer: chunk,
+                            }
+                        );
+                        resolve();
+                    } catch (err) {
+                        reject(err);
+                    }
+                });
+
+                promises.push(promise);
+            }
+
+            await Promise.all(promises);
+        },
     },
 
     folders: {
@@ -105,23 +216,17 @@ const Api = {
         async update(uid: string, updates: Partial<User>) {
             await endpoint.put(`/users/${uid}`, updates);
         },
-        watch(uid: string) {
-            return {
-                onUpdate(callback: (user: User) => void, runOnInit = false) {
-                    return userCollection.doc(uid).onSnapshot(
-                        createDocumentListener(runOnInit, (snapshot) => {
-                            if (!snapshot.exists)
-                                throw new Error("User not found");
-
-                            const user = secureUserData(
-                                new User(snapshot.data())
-                            );
-                            callback(user);
-                        })
-                    );
-                },
-            };
-        },
+        watch: (uid: string) => ({
+            onUpdate(callback: (user: User) => void, runOnInit = false) {
+                return userCollection.doc(uid).onSnapshot(
+                    createDocumentListener(runOnInit, (snapshot) => {
+                        if (!snapshot.exists) throw new Error("User not found");
+                        const user = secureUserData(new User(snapshot.data()));
+                        callback(user);
+                    })
+                );
+            },
+        }),
     },
 };
 

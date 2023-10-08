@@ -72,6 +72,7 @@ const pt_BR: TranslationTable = {
     used: "usado",
     "Upload a file": "Carregar um arquivo",
     "Create a folder": "Criar uma pasta",
+    "Error uploading files": "Erro ao baixar arquivos",
 };
 
 export { pt_BR };

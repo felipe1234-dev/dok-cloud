@@ -21,7 +21,7 @@
     "@react-navigation/bottom-tabs": "^6.5.8",
     "axios": "^1.5.0",
     "buffer": "^6.0.3",
-    "dok-fortress-globals": "^1.1.6",
+    "dok-fortress-globals": "^1.2.1",
     "expo": "~49.0.8",
     "expo-document-picker": "~11.5.4",
     "expo-file-system": "~15.4.4",
