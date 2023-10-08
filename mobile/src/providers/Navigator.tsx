@@ -53,6 +53,11 @@ function NavigatorProvider(props: { children: ReactNode }) {
         </Wrapper>
     );
 
+    /**
+     * @param name The screen identifier
+     * @param params Parameters to be passed to the screen component
+     * @param reload Whether to show the screen spinner
+     */
     const navigate = (
         name: ScreenName,
         params?: ScreenParams,

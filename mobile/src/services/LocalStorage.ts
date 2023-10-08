@@ -1,6 +1,7 @@
 import AsyncLocalStorage from "@react-native-async-storage/async-storage";
 import { Platform } from "react-native";
 
+/** Wrapper for AsyncLocalStorage and localStorage (Web) */
 class LocalStorage {
     static async getItem(key: string) {
         const value =

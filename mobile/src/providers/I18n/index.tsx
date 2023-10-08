@@ -26,6 +26,10 @@ function I18nProvider(props: { children: ReactNode }) {
     const [language, setLanguage] = useState<Language>("en_US");
     const { user } = useAuth();
 
+    /**
+     * @param text The text to be translated
+     * @param replaceMatrix The replace matrix to be used for inserting variable values into the translated text dynamically
+     */
     const t = (text: string, replaceMatrix?: ReplaceMatrix) => {
         let result = languages[language][text] || text;
 
