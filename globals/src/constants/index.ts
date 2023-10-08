@@ -18,4 +18,4 @@ export const GB = 1000 * MB;
 export const TB = 1000 * GB;
 export const KiB = 1024;
 export const MiB = 1024 * KiB;
-export const MAX_CHUNK_SIZE = 1 * MiB - 89;
+export const MAX_CHUNK_SIZE = 1 * MiB - 89 - 1 * KB;

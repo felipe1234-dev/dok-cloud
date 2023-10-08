@@ -3,7 +3,7 @@ import { generateUid, toDate } from "../functions";
 class Chunk {
     public uid: string;
     public document: string;
-    public buffer: number[];
+    public buffer: string;
     public index: number;
     public deleted: boolean;
     public deletedAt?: Date;
@@ -16,7 +16,7 @@ class Chunk {
         const {
             uid = generateUid(prefix, prefix.length + 25),
             document = "",
-            buffer = [],
+            buffer = "",
             index = 0,
             deleted = false,
             deletedAt,
@@ -41,8 +41,7 @@ class Chunk {
             (obj instanceof Object &&
                 typeof obj.uid === "string" &&
                 typeof obj.document === "string" &&
-                Array.isArray(obj.buffer) &&
-                obj.buffer.every((item: any) => typeof item === "number") &&
+                typeof obj.buffer === "string" &&
                 typeof obj.index === "number" &&
                 typeof obj.deleted === "boolean" &&
                 (obj.deletedAt === undefined ||
