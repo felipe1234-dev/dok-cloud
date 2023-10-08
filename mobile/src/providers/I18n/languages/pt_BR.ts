@@ -70,6 +70,8 @@ const pt_BR: TranslationTable = {
         "Por favor, clique no botão abaixo para ir até o seu explorador de arquivos",
     "File explorer": "Explorador de arquivos",
     used: "usado",
+    "Upload a file": "Carregar um arquivo",
+    "Create a folder": "Criar uma pasta",
 };
 
 export { pt_BR };

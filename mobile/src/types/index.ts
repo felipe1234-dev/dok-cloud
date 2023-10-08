@@ -7,3 +7,4 @@ export * from "./Filters";
 export * from "./TranslationTable";
 export * from "./Tree";
 export * from "./listeners";
+export * from "./LocalFile";

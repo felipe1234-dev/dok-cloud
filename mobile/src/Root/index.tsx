@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView } from "react-native";
 import { useFonts } from "expo-font";
 
-import { ScreenLoader, CustomToast, BottomNav } from "@components";
+import {
+    ScreenLoader,
+    CustomToast,
+    BottomNav,
+    UploadButton,
+} from "@components";
 import { useNavigator, useTheme, useAuth } from "@providers";
 import { fonts } from "@constants";
 
@@ -41,7 +46,12 @@ function Root() {
                 <CurrentScreen />
             </ScrollView>
             <CustomToast />
-            {!!user && <BottomNav />}
+            {!!user && (
+                <>
+                    <UploadButton />
+                    <BottomNav />
+                </>
+            )}
         </SafeAreaView>
     );
 }
