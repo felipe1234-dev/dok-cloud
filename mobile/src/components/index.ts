@@ -11,3 +11,5 @@ export * from "./Ultrabar";
 export * from "./Selector";
 export * from "./BottomNav";
 export * from "./CircularProgress";
+export * from "./UploadButton";
+export * from "./Modal";
